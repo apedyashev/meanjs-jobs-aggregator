@@ -9,6 +9,10 @@ angular.module('dashboard').config(['$stateProvider',
 			url: '/dashboard/subscription/new',
 			templateUrl: 'modules/dashboard/views/new-subscription.client.view.html'
 		}).
+		state('edit-subscription/', {
+			url: '/dashboard/edit-subscription/:subscriptionId',
+			templateUrl: 'modules/dashboard/views/edit-subscription.client.view.html'
+		}).
 		state('view-subscription-jobs', {
 			url: '/dashboard/subscription/:subscriptionId',
 			templateUrl: 'modules/dashboard/views/view-subscription-jobs.client.view.html'

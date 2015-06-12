@@ -1,5 +1,10 @@
 <section>
 	<div data-ng-repeat="subscription in subscriptions">
-		<a data-ng-href="/#!/dashboard/subscription/{{subscription._id}}">{{subscription.title}}</a>
+		<a data-ng-href="/#!/dashboard/subscription/{{subscription._id}}">
+			{{subscription.title}}
+		</a>
+		<a data-ng-href="/#!/dashboard/edit-subscription/{{subscription._id}}">
+			<i class="fa fa-pencil-square-o pull-right"></i>
+		</a>
 	</div>
 </section>

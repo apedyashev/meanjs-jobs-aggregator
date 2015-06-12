@@ -14,7 +14,9 @@ module.exports = {
 		lib: {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+				//'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+				'public/lib/font-awesome/css/font-awesome.css',
+				'public/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.css',
 			],
 			js: [
 				'public/lib/jquery/dist/jquery.js',
@@ -31,8 +33,7 @@ module.exports = {
 			]
 		},
 		css: [
-			'public/modules/**/css/*.css',
-			'public/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.css'
+			'public/modules/**/css/*.css'
 		],
 		js: [
 			'public/config.js',

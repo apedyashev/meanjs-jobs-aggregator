@@ -1,0 +1,35 @@
+<form data-ng-submit="save()">
+	<div class="form-group">
+		<label>Title</label>
+		<input type="text" class="form-control" data-ng-model="subscription.title" placeholder="Subscription's title">
+	</div>
+
+
+	<div class="form-group">
+		<label>Keywords</label>
+		<keywords-tabinput keywords="subscription.keywords"></keywords-tabinput>
+	</div>
+
+	Select cities
+
+	<div class="well">
+		<div class="checkbox" data-ng-repeat="city in stats.cities | orderBy:'toString()'">
+			<label>
+				<input type="checkbox" value="{{city}}" data-ng-model="subscription.selectedCities[city]"> {{city}}
+			</label>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-offset-9 col-sm-3">
+			<div class="row">
+				<div class="col-sm-6">
+					<a href="/#!/dashboard" class="btn btn-default pull-right">Cancel</a>
+				</div>
+				<div class="col-sm-6">
+					<button type="submit" class="btn btn-success pull-right">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

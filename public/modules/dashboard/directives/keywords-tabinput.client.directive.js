@@ -10,8 +10,15 @@ angular.module('dashboard').directive('keywordsTabinput', [
 			},
 			link: function postLink(scope, element, attrs) {
 				$(element).tagsinput();
+
+				// display keywords in the tabinput
+				if (scope.keywords) {
+					$.each(scope.keywords, function(index, keyword) {
+						$(element).tagsinput('add', keyword);
+					});
+				}
+				//pass added keywords from widget to scope's variable
 				$(element).on('itemAdded', function(event) {
-					console.log(event.item);
 					scope.keywords.push(event.item);
 				});
 			}

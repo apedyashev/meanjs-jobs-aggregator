@@ -9,7 +9,7 @@ angular.module('dashboard').controller('NewSubscriptionController', ['$scope', '
 
 		$scope.selectedCities = {};
 		$scope.keywords = [];
-		$scope.create = function() {
+		$scope.save = function() {
 			var cities = $.map($scope.selectedCities, function(value, key) {
 					return key;
 				}),
