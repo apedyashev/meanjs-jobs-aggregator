@@ -17,9 +17,9 @@ angular.module('dashboard').controller('EditSubscriptionController', ['$scope', 
 			Subscription.get({
 				id: $stateParams.subscriptionId
 			}).$promise.then(function(subscription) {
-				$scope.subscription._id 	= subscription._id;
-				$scope.subscription.title 	= subscription.title;
-				$scope.subscription.keywords = subscription.keywords;
+				$scope.subscription._id 		= subscription._id;
+				$scope.subscription.title 		= subscription.title;
+				$scope.subscription.keywords 	= subscription.keywords;
 
 				$.each(subscription.cities, function(index, city) {
 					$scope.subscription.selectedCities[city] = true;

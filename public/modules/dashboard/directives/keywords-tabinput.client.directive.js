@@ -6,17 +6,24 @@ angular.module('dashboard').directive('keywordsTabinput', [
 			templateUrl: '/modules/dashboard/views/keywords-tabinput.client.view.html',
 			restrict: 'E',
 			scope: {
-				keywords: '=keywords'
+				keywords: '='
 			},
 			link: function postLink(scope, element, attrs) {
 				$(element).tagsinput();
 
-				// display keywords in the tabinput
-				if (scope.keywords) {
-					$.each(scope.keywords, function(index, keyword) {
-						$(element).tagsinput('add', keyword);
-					});
-				}
+				// the link() function is being called, scope.keywords = [] so we need to wait when AJAX response
+				// is received and scope.keywords is initialized
+				scope.$watch(function() {
+					return scope.keywords;
+				}, function() {
+					// display keywords in the tabinput
+					if (scope.keywords) {
+						$.each(scope.keywords, function(index, keyword) {
+							$(element).tagsinput('add', keyword);
+						});
+					}
+				});
+
 				//pass added keywords from widget to scope's variable
 				$(element).on('itemAdded', function(event) {
 					scope.keywords.push(event.item);
