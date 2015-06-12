@@ -14,11 +14,6 @@ angular.module('dashboard').controller('EditSubscriptionController', ['$scope', 
 		$scope.init = function() {
 			$scope.stats = Job.getStats();
 
-
-			//$scope.selectedCities = {};
-			//$scope.keywords = [];
-
-
 			Subscription.get({
 				id: $stateParams.subscriptionId
 			}).$promise.then(function(subscription) {
@@ -45,14 +40,10 @@ angular.module('dashboard').controller('EditSubscriptionController', ['$scope', 
 				});
 			subscription.$update(function(response) {
 				//$location.path('articles/' + response._id);
-
-				//$scope.title = '';
-				//$scope.content = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
-			//console.log($scope.subscription, cities, $scope.selectedCities, $scope.keywords);
-			console.log($scope.subscription);
+			console.log($scope.subscription.keywords);
 		};
 	}
 ]);
