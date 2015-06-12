@@ -1,0 +1,10 @@
+<section data-ng-controller="SidebarController">
+	<div  ui-route="/dashboard/subscription/new" ng-class="{active: $uiRoute}">
+		<a href="/#!/dashboard/subscription/new">+ New Subscription</a>
+	</div>
+
+	<subscriptions-list></subscriptions-list>
+	<div  ui-route="/dashboard" ng-class="{active: $uiRoute}">
+		<a href="/#!/dashboard">All Jobs</a>
+	</div>
+</section>
