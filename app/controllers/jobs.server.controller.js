@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
 	subscriptionController = require('./subscriptions.server.controller'),
 	Job = mongoose.model('Job'),
 	Subscription = mongoose.model('Subscription'),
+	util = require('util'),
 	_ = require('lodash');
 
 /**
@@ -72,28 +73,28 @@ exports.delete = function(req, res) {
 };
 
 /**
- * List of Jobs
+ * List of Jobs (all or for specific subscription, if subscriptionId is defined in query string)
  */
 exports.list = function(req, res) {
-	//var scrapper = require('../libs/scrapper')();
-	//scrapper.run(function(err, jobs) {
-	//	if (err) {
-	//		return res.status(400).send({
-	//			message: errorHandler.getErrorMessage(err)
-	//		});
-	//	} else {
-	//		res.jsonp(jobs);
-	//	}
-	//});
-
 	var findJobs = function(subscription) {
-		var query = {};
+		var query = {},
+			$or = [];
+
 		if (subscription) {
-			console.log(subscription);
+			subscription.keywords.forEach(function(keyword) {
+				$or.push({
+					short_description: new RegExp(keyword, 'i')
+				});
+				$or.push({
+					title: new RegExp(keyword, 'i')
+				});
+			});
+
 			query = {
 				city: {
 					$in: subscription.cities
-				}
+				},
+				$or: $or
 			};
 		}
 
