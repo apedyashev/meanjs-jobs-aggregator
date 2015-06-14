@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('dashboard').controller('NewSubscriptionController', ['$scope', 'Job', 'Subscription',
-	function($scope, Job, Subscription) {
+angular.module('dashboard').controller('NewSubscriptionController', ['$scope', '$location', 'Job', 'Subscription',
+	function($scope, $location, Job, Subscription) {
 
 		$scope.subscription = {
 			_id: null,
@@ -14,8 +14,6 @@ angular.module('dashboard').controller('NewSubscriptionController', ['$scope', '
 			$scope.stats = Job.getStats();
 		};
 
-		//$scope.selectedCities = {};
-		//$scope.keywords = [];
 		$scope.save = function() {
 			var cities = $.map($scope.subscription.selectedCities, function(value, key) {
 					return key;
@@ -26,11 +24,10 @@ angular.module('dashboard').controller('NewSubscriptionController', ['$scope', '
 					keywords: $scope.subscription.keywords
 				});
 			subscription.$save(function(response) {
-				//$location.path('articles/' + response._id);
+				$location.path('dashboard/subscription/' + response._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
-			//console.log(cities, $scope.selectedCities, $scope.keywords);
 		};
 	}
 ]);

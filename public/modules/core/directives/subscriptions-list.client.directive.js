@@ -6,9 +6,11 @@ angular.module('core').directive('subscriptionsList', ['Subscription',
 			templateUrl: '/modules/core/views/subscriptions-list.client.view.html',
 			restrict: 'E',
 			link: function postLink(scope, element, attrs) {
-				scope.subscriptions = Subscription.query();
+			 	Subscription.query(function(data){
+					 scope.subscriptions = Subscription.getAll();
+				});
 
-				
+
 				scope.removeSubscription = function(subscription) {
 					subscription.$remove(function() {
 						for (var i in scope.subscriptions) {
