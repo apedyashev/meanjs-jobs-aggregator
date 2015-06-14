@@ -51,5 +51,8 @@ module.exports = {
 			userId: 'f5314fd8-339b-4c2e-9bd5-a903ba866bcd',
 			apiKey: 'f5314fd8-339b-4c2e-9bd5-a903ba866bcd:jtPcuILZD9uJ4HMBWcAKX/6cBXUR3HXIo/z/KHMNBzbLUkxr2xAgmsXvVU6koy68eTvEEO18pKiWRII+Wd8a2w=='
 		}
+	},
+	scrapper: {
+		importInterval: 3600000
 	}
 };
