@@ -9,6 +9,7 @@ var mongoose = require('mongoose'),
 	Job = mongoose.model('Job'),
 	Subscription = mongoose.model('Subscription'),
 	util = require('util'),
+	async = require('async'),
 	_ = require('lodash');
 
 /**
@@ -123,27 +124,111 @@ exports.list = function(req, res) {
 };
 
 exports.stats = function (req, res) {
-	Job.aggregate([
-		{$group: {
-			_id: null,
-			cities: {
-				$addToSet: '$city'
+	var paramsMap = [
+			{
+				queryName: 'cities',
+				dbName: 'city'
 			},
-			availabilities: {
-				$addToSet: '$availability'
+			{
+				queryName: 'availabilities',
+				dbName: 'availability'
 			}
-		}}
-	], function(err, results) {
+		],
+		allowedQueryNames = {
+			cities: true,
+			availabilities: true
+		};
+
+	async.map(paramsMap, function(paramData, done) {
+		if (req.query[paramData.queryName] && allowedQueryNames[paramData.queryName]) {
+			var firstGroup = {
+					_id: {},
+					count: {
+						$sum: 1
+					}
+				},
+				secondGroup = {
+					_id: null
+				};
+			firstGroup._id[paramData.dbName] = { $ifNull: [ '$' + paramData.dbName, 'N/A' ] };
+			secondGroup[paramData.queryName] = {
+				$addToSet: {
+					name: '$_id.' + paramData.dbName,
+					count: '$count'
+				}
+			};
+			Job.aggregate([
+				{
+					$group: firstGroup
+				},
+				{
+					$group: secondGroup
+				}
+			], function(err, results) {
+
+				if (err) {
+					done(err);
+				} else {
+					var statsData = results[0] || {};
+					delete statsData._id;
+					done(null, statsData);
+				}
+			});
+		}
+		else {
+			done(null, {});
+		}
+	}, function(err, results) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			var statsData = results[0] || {};
-			delete statsData._id;
+			var statsData = {};
+			results.forEach(function(dbResults) {
+				paramsMap.forEach(function(paramData) {
+					if (dbResults[paramData.queryName]) {
+						statsData[paramData.queryName] = dbResults[paramData.queryName];
+					}
+				});
+			});
 			res.jsonp(statsData);
 		}
 	});
+
+	//Job.aggregate([
+	//	{
+	//		$group: {
+	//			_id: {
+	//				city: '$city'
+	//			},
+	//			count: {
+	//				$sum: 1
+	//			}
+	//		}
+	//	},
+	//	{
+	//		$group: {
+	//			_id: null,
+	//			cities: {
+	//				$addToSet: {
+	//					name: '$_id.city',
+	//					count: '$count'
+	//				}
+	//			}
+	//		}
+	//	}
+	//], function(err, results) {
+	//	if (err) {
+	//		return res.status(400).send({
+	//			message: errorHandler.getErrorMessage(err)
+	//		});
+	//	} else {
+	//		var statsData = results[0] || {};
+	//		delete statsData._id;
+	//		res.jsonp(statsData);
+	//	}
+	//});
 
 };
 

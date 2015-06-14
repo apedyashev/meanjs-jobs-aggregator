@@ -11,7 +11,9 @@ angular.module('dashboard').controller('NewSubscriptionController', ['$scope', '
 		};
 
 		$scope.init = function() {
-			$scope.stats = Job.getStats();
+			$scope.stats = Job.getStats({
+				cities: true
+			});
 		};
 
 		$scope.save = function() {

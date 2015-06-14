@@ -12,7 +12,9 @@ angular.module('dashboard').controller('EditSubscriptionController', ['$scope', 
 		};
 
 		$scope.init = function() {
-			$scope.stats = Job.getStats();
+			$scope.stats = Job.getStats({
+				cities: true
+			});
 
 			Subscription.get({
 				id: $stateParams.subscriptionId
