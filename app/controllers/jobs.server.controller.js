@@ -98,7 +98,9 @@ exports.list = function(req, res) {
 			};
 		}
 
-		Job.find(query).sort('-created').populate('user', 'displayName').exec(function(err, jobs) {
+		var limit = req.query.limit || 20,
+			offset = req.query.offset || 0;
+		Job.find(query).sort('-created').limit(limit).skip(offset).populate('user', 'displayName').exec(function(err, jobs) {
 			if (err) {
 				return res.status(400).send({
 					message: errorHandler.getErrorMessage(err)
