@@ -3,8 +3,13 @@
 		<a data-ng-href="/#!/dashboard/subscription/{{subscription._id}}">
 			{{subscription.title}}
 		</a>
-		<a data-ng-href="/#!/dashboard/edit-subscription/{{subscription._id}}">
-			<i class="fa fa-pencil-square-o pull-right"></i>
-		</a>
+		<span class="pull-right">
+			<a data-ng-href="/#!/dashboard/edit-subscription/{{subscription._id}}">
+				<i class="fa fa-pencil-square-o "></i>
+			</a>
+			<a href="javascript:void(0);" data-ng-click="removeSubscription(subscription)">
+				<i class="fa fa-trash-o"></i>
+			</a>
+		</span>
 	</div>
 </section>

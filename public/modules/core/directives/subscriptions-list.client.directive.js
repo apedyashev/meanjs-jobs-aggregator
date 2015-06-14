@@ -7,7 +7,17 @@ angular.module('core').directive('subscriptionsList', ['Subscription',
 			restrict: 'E',
 			link: function postLink(scope, element, attrs) {
 				scope.subscriptions = Subscription.query();
-				//element.text('this is the subscriptionsList directive');
+
+				
+				scope.removeSubscription = function(subscription) {
+					subscription.$remove(function() {
+						for (var i in scope.subscriptions) {
+							if (scope.subscriptions[i] === subscription) {
+								scope.subscriptions.splice(i, 1);
+							}
+						}
+					});
+				};
 			}
 		};
 	}
