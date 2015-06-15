@@ -16,7 +16,7 @@ var credentials, user, subscription;
 /**
  * Subscription routes tests
  */
-describe('Subscription CRUD tests', function() {
+describe.only('Subscription CRUD tests', function() {
 	beforeEach(function(done) {
 		// Create user credentials
 		credentials = {
@@ -38,7 +38,10 @@ describe('Subscription CRUD tests', function() {
 		// Save a user to the test db and create new Subscription
 		user.save(function() {
 			subscription = {
-				name: 'Subscription Name'
+				title: 'My Subscription',
+				keywords: ['women', 'beautiful'],
+				cities: ['Sofia', 'Skopje'],
+				user: user._id
 			};
 
 			done();
@@ -51,31 +54,37 @@ describe('Subscription CRUD tests', function() {
 			.expect(200)
 			.end(function(signinErr, signinRes) {
 				// Handle signin error
-				if (signinErr) done(signinErr);
+				if (signinErr) {
+					done(signinErr);
+				}
 
 				// Get the userId
 				var userId = user.id;
 
 				// Save a new Subscription
-				agent.post('/subscriptions')
+				agent.post('/api/subscriptions')
 					.send(subscription)
 					.expect(200)
 					.end(function(subscriptionSaveErr, subscriptionSaveRes) {
 						// Handle Subscription save error
-						if (subscriptionSaveErr) done(subscriptionSaveErr);
+						if (subscriptionSaveErr) {
+							done(subscriptionSaveErr);
+						}
 
 						// Get a list of Subscriptions
-						agent.get('/subscriptions')
+						agent.get('/api/subscriptions')
 							.end(function(subscriptionsGetErr, subscriptionsGetRes) {
 								// Handle Subscription save error
-								if (subscriptionsGetErr) done(subscriptionsGetErr);
+								if (subscriptionsGetErr) {
+									done(subscriptionsGetErr);
+								}
 
 								// Get Subscriptions list
 								var subscriptions = subscriptionsGetRes.body;
 
 								// Set assertions
 								(subscriptions[0].user._id).should.equal(userId);
-								(subscriptions[0].name).should.match('Subscription Name');
+								(subscriptions[0].title).should.match(subscription.title);
 
 								// Call the assertion callback
 								done();
@@ -85,7 +94,7 @@ describe('Subscription CRUD tests', function() {
 	});
 
 	it('should not be able to save Subscription instance if not logged in', function(done) {
-		agent.post('/subscriptions')
+		agent.post('/api/subscriptions')
 			.send(subscription)
 			.expect(401)
 			.end(function(subscriptionSaveErr, subscriptionSaveRes) {
@@ -94,27 +103,29 @@ describe('Subscription CRUD tests', function() {
 			});
 	});
 
-	it('should not be able to save Subscription instance if no name is provided', function(done) {
+	it('should not be able to save Subscription instance if no title is provided', function(done) {
 		// Invalidate name field
-		subscription.name = '';
+		subscription.title = '';
 
 		agent.post('/auth/signin')
 			.send(credentials)
 			.expect(200)
 			.end(function(signinErr, signinRes) {
 				// Handle signin error
-				if (signinErr) done(signinErr);
+				if (signinErr) {
+					done(signinErr);
+				}
 
 				// Get the userId
 				var userId = user.id;
 
 				// Save a new Subscription
-				agent.post('/subscriptions')
+				agent.post('/api/subscriptions')
 					.send(subscription)
 					.expect(400)
 					.end(function(subscriptionSaveErr, subscriptionSaveRes) {
 						// Set message assertion
-						(subscriptionSaveRes.body.message).should.match('Please fill Subscription name');
+						(subscriptionSaveRes.body.message).should.match('Please fill Subscription title');
 						
 						// Handle Subscription save error
 						done(subscriptionSaveErr);
@@ -134,27 +145,31 @@ describe('Subscription CRUD tests', function() {
 				var userId = user.id;
 
 				// Save a new Subscription
-				agent.post('/subscriptions')
+				agent.post('/api/subscriptions')
 					.send(subscription)
 					.expect(200)
 					.end(function(subscriptionSaveErr, subscriptionSaveRes) {
 						// Handle Subscription save error
-						if (subscriptionSaveErr) done(subscriptionSaveErr);
+						if (subscriptionSaveErr) {
+							done(subscriptionSaveErr);
+						}
 
 						// Update Subscription name
-						subscription.name = 'WHY YOU GOTTA BE SO MEAN?';
+						subscription.title = 'WHY YOU GOTTA BE SO MEAN?';
 
 						// Update existing Subscription
-						agent.put('/subscriptions/' + subscriptionSaveRes.body._id)
+						agent.put('/api/subscriptions/' + subscriptionSaveRes.body._id)
 							.send(subscription)
 							.expect(200)
 							.end(function(subscriptionUpdateErr, subscriptionUpdateRes) {
 								// Handle Subscription update error
-								if (subscriptionUpdateErr) done(subscriptionUpdateErr);
+								if (subscriptionUpdateErr) {
+									done(subscriptionUpdateErr);
+								}
 
 								// Set assertions
 								(subscriptionUpdateRes.body._id).should.equal(subscriptionSaveRes.body._id);
-								(subscriptionUpdateRes.body.name).should.match('WHY YOU GOTTA BE SO MEAN?');
+								(subscriptionUpdateRes.body.title).should.match(subscription.title);
 
 								// Call the assertion callback
 								done();
@@ -163,19 +178,42 @@ describe('Subscription CRUD tests', function() {
 			});
 	});
 
-	it('should be able to get a list of Subscriptions if not signed in', function(done) {
+	it('should not be able to update Subscription instance if not signed in', function(done) {
+		// Create new Subscription model instance
+		var subscriptionObj = new Subscription(subscription);
+
+		// Save the Subscription
+		subscriptionObj.save(function(subscriptionSaveErr) {
+			// Handle Subscription save error
+			if (subscriptionSaveErr) {
+				done(subscriptionSaveErr);
+			}
+
+			// Update Subscription name
+			subscription.title = 'WHY YOU GOTTA BE SO MEAN?';
+
+			// Update existing Subscription
+			agent.put('/api/subscriptions/' + subscriptionObj.id)
+				.send(subscription)
+				.expect(401)
+				.end(function(subscriptionUpdateErr, res) {
+					(res.body.message).should.match('User is not logged in');
+					done();
+				});
+		});
+	});
+
+	it('should not be able to get a list of Subscriptions if not signed in', function(done) {
 		// Create new Subscription model instance
 		var subscriptionObj = new Subscription(subscription);
 
 		// Save the Subscription
 		subscriptionObj.save(function() {
 			// Request Subscriptions
-			request(app).get('/subscriptions')
+			request(app).get('/api/subscriptions')
+				.expect(403)
 				.end(function(req, res) {
-					// Set assertion
-					res.body.should.be.an.Array.with.lengthOf(1);
-
-					// Call the assertion callback
+					(res.body.message).should.match('User is not logged in');
 					done();
 				});
 
@@ -183,21 +221,75 @@ describe('Subscription CRUD tests', function() {
 	});
 
 
-	it('should be able to get a single Subscription if not signed in', function(done) {
+	it('should be able to get a list of Subscriptions if signed in', function(done) {
+		agent.post('/auth/signin')
+			.send(credentials)
+			.expect(200)
+			.end(function(signinErr, signinRes) {
+				// Handle signin error
+				if (signinErr) {
+					done(signinErr);
+				}
+
+				var subscriptionObj = new Subscription(subscription);
+
+				// Save the Subscription
+				subscriptionObj.save(function() {
+					agent.get('/api/subscriptions')
+						.expect(200)
+						.end(function(req, res) {
+							// Set assertion
+							(res.body).should.be.an.Array.with.lengthOf(1);
+
+							// Call the assertion callback
+							done();
+						});
+					});
+			});
+	});
+
+	it('should not be able to get a single Subscription if not signed in', function(done) {
 		// Create new Subscription model instance
 		var subscriptionObj = new Subscription(subscription);
 
 		// Save the Subscription
 		subscriptionObj.save(function() {
-			request(app).get('/subscriptions/' + subscriptionObj._id)
+			request(app).get('/api/subscriptions/' + subscriptionObj._id)
+				.expect(403)
 				.end(function(req, res) {
-					// Set assertion
-					res.body.should.be.an.Object.with.property('name', subscription.name);
-
-					// Call the assertion callback
+					(res.body.message).should.match('User is not logged in');
 					done();
 				});
 		});
+	});
+
+	it('should be able to get a single Subscription if signed in', function(done) {
+		agent.post('/auth/signin')
+			.send(credentials)
+			.expect(200)
+			.end(function(signinErr, signinRes) {
+				// Handle signin error
+				if (signinErr) {
+					done(signinErr);
+				}
+
+				var subscriptionObj = new Subscription(subscription);
+
+				// Save the Subscription
+				subscriptionObj.save(function() {
+					// Save a new Subscription
+					agent.get('/api/subscriptions/' + subscriptionObj.id)
+						.expect(200)
+						.end(function(err, res) {
+							// Handle Subscription save error
+							if (err) {
+								done(err);
+							}
+							res.body.should.be.an.Object.with.property('title', subscription.title);
+							done();
+						});
+				});
+			});
 	});
 
 	it('should be able to delete Subscription instance if signed in', function(done) {
@@ -212,7 +304,7 @@ describe('Subscription CRUD tests', function() {
 				var userId = user.id;
 
 				// Save a new Subscription
-				agent.post('/subscriptions')
+				agent.post('/api/subscriptions')
 					.send(subscription)
 					.expect(200)
 					.end(function(subscriptionSaveErr, subscriptionSaveRes) {
@@ -220,7 +312,7 @@ describe('Subscription CRUD tests', function() {
 						if (subscriptionSaveErr) done(subscriptionSaveErr);
 
 						// Delete existing Subscription
-						agent.delete('/subscriptions/' + subscriptionSaveRes.body._id)
+						agent.delete('/api/subscriptions/' + subscriptionSaveRes.body._id)
 							.send(subscription)
 							.expect(200)
 							.end(function(subscriptionDeleteErr, subscriptionDeleteRes) {
@@ -247,15 +339,13 @@ describe('Subscription CRUD tests', function() {
 		// Save the Subscription
 		subscriptionObj.save(function() {
 			// Try deleting Subscription
-			request(app).delete('/subscriptions/' + subscriptionObj._id)
-			.expect(401)
-			.end(function(subscriptionDeleteErr, subscriptionDeleteRes) {
-				// Set message assertion
-				(subscriptionDeleteRes.body.message).should.match('User is not logged in');
+			request(app).delete('/api/subscriptions/' + subscriptionObj._id)
+				.expect(401)
+				.end(function(subscriptionDeleteErr, subscriptionDeleteRes) {
+					(subscriptionDeleteRes.body.message).should.match('User is not logged in');
 
-				// Handle Subscription error error
-				done(subscriptionDeleteErr);
-			});
+					done(subscriptionDeleteErr);
+				});
 
 		});
 	});

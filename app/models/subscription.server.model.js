@@ -13,7 +13,7 @@ var SubscriptionSchema = new Schema({
 	title: {
 		type: String,
 		default: '',
-		required: 'Please fill Subscription name',
+		required: 'Please fill Subscription title',
 		trim: true
 	},
 	keywords: {

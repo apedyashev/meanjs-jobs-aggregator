@@ -96,11 +96,13 @@ exports.subscriptionByID = function(req, res, next, id) {
 			return next(new Error('Failed to load Subscription ' + id));
 		}
 
-		if (subscription.user.id !== req.user.id) {
-			return next(new Error('You are not allowed to use this subscription ' + id));
+		if (req.user && (subscription.user.id !== req.user.id)) {
+			return res.status(403).send({
+				message: 'You are not allowed to use this subscription'
+			});
 		}
 
-		req.subscription = subscription ;
+		req.subscription = subscription;
 		next();
 	});
 };

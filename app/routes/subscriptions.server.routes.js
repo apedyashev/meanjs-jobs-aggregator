@@ -6,11 +6,11 @@ module.exports = function(app) {
 
 	// Subscriptions Routes
 	app.route('/api/subscriptions')
-		.get(subscriptions.list)
+		.get(users.requiresLogin, subscriptions.list)
 		.post(users.requiresLogin, subscriptions.create);
 
 	app.route('/api/subscriptions/:subscriptionId')
-		.get(subscriptions.read)
+		.get(users.requiresLogin, subscriptions.hasAuthorization, subscriptions.read)
 		.put(users.requiresLogin, subscriptions.hasAuthorization, subscriptions.update)
 		.delete(users.requiresLogin, subscriptions.hasAuthorization, subscriptions.delete);
 
