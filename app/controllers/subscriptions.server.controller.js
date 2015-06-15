@@ -99,7 +99,7 @@ exports.subscriptionByID = function(req, res, next, id) {
 			return next(new Error('Failed to load Subscription ' + id));
 		}
 
-		if (!req.user || !subscription.user || (subscription.user.id !== req.user.id)) {
+		if (req.user && subscription.user && (subscription.user.id !== req.user.id)) {
 			return res.status(403).send({
 				message: 'You are not allowed to use this subscription'
 			});
@@ -114,7 +114,7 @@ exports.subscriptionByID = function(req, res, next, id) {
  * Subscription authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (!req.subscription || !req.user || ((req.subscription.user.id !== req.user.id))) {
+	if (req.subscription && req.user && (req.subscription.user.id !== req.user.id)) {
 		return res.status(403).send('User is not authorized');
 	}
 	next();
