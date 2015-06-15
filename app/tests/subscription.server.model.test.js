@@ -29,8 +29,10 @@ describe('Subscription Model Unit Tests:', function() {
 
 		user.save(function() { 
 			subscription = new Subscription({
-				name: 'Subscription Name',
-				user: user
+				title: 'My Subscription',
+				keywords: ['women', 'beautiful'],
+				cities: ['Sofia', 'Skopje'],
+				user: user._id
 			});
 
 			done();
@@ -45,8 +47,8 @@ describe('Subscription Model Unit Tests:', function() {
 			});
 		});
 
-		it('should be able to show an error when try to save without name', function(done) { 
-			subscription.name = '';
+		it('should be able to show an error when try to save without title', function(done) {
+			subscription.title = '';
 
 			return subscription.save(function(err) {
 				should.exist(err);
