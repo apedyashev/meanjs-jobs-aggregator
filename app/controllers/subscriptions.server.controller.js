@@ -72,8 +72,11 @@ exports.delete = function(req, res) {
 /**
  * List of Subscriptions
  */
-exports.list = function(req, res) { 
-	Subscription.find().sort('-created').populate('user', 'displayName').exec(function(err, subscriptions) {
+exports.list = function(req, res) {
+	var query = {
+		user: req.user._id
+	};
+	Subscription.find(query).sort('-created').populate('user', 'displayName').exec(function(err, subscriptions) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -96,7 +99,7 @@ exports.subscriptionByID = function(req, res, next, id) {
 			return next(new Error('Failed to load Subscription ' + id));
 		}
 
-		if (req.user && (subscription.user.id !== req.user.id)) {
+		if (!req.user || !subscription.user || (subscription.user.id !== req.user.id)) {
 			return res.status(403).send({
 				message: 'You are not allowed to use this subscription'
 			});
@@ -111,7 +114,7 @@ exports.subscriptionByID = function(req, res, next, id) {
  * Subscription authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.subscription.user.id !== req.user.id) {
+	if (!req.subscription || !req.user || ((req.subscription.user.id !== req.user.id))) {
 		return res.status(403).send('User is not authorized');
 	}
 	next();
