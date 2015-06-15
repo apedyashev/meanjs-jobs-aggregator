@@ -12,66 +12,6 @@ var mongoose = require('mongoose'),
 	async = require('async'),
 	_ = require('lodash');
 
-/**
- * Create a Job
- */
-exports.create = function(req, res) {
-	var job = new Job(req.body);
-	job.user = req.user;
-
-	job.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(job);
-		}
-	});
-};
-
-/**
- * Show the current Job
- */
-exports.read = function(req, res) {
-	res.jsonp(req.job);
-};
-
-/**
- * Update a Job
- */
-exports.update = function(req, res) {
-	var job = req.job ;
-
-	job = _.extend(job , req.body);
-
-	job.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(job);
-		}
-	});
-};
-
-/**
- * Delete an Job
- */
-exports.delete = function(req, res) {
-	var job = req.job ;
-
-	job.remove(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(job);
-		}
-	});
-};
 
 /**
  * List of Jobs (all or for specific subscription, if subscriptionId is defined in query string)
@@ -194,53 +134,6 @@ exports.stats = function (req, res) {
 			});
 			res.jsonp(statsData);
 		}
-	});
-
-	//Job.aggregate([
-	//	{
-	//		$group: {
-	//			_id: {
-	//				city: '$city'
-	//			},
-	//			count: {
-	//				$sum: 1
-	//			}
-	//		}
-	//	},
-	//	{
-	//		$group: {
-	//			_id: null,
-	//			cities: {
-	//				$addToSet: {
-	//					name: '$_id.city',
-	//					count: '$count'
-	//				}
-	//			}
-	//		}
-	//	}
-	//], function(err, results) {
-	//	if (err) {
-	//		return res.status(400).send({
-	//			message: errorHandler.getErrorMessage(err)
-	//		});
-	//	} else {
-	//		var statsData = results[0] || {};
-	//		delete statsData._id;
-	//		res.jsonp(statsData);
-	//	}
-	//});
-
-};
-
-/**
- * Job middleware
- */
-exports.jobByID = function(req, res, next, id) { 
-	Job.findById(id).populate('user', 'displayName').exec(function(err, job) {
-		if (err) return next(err);
-		if (! job) return next(new Error('Failed to load Job ' + id));
-		req.job = job ;
-		next();
 	});
 };
 
