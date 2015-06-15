@@ -113,7 +113,7 @@ describe('Job CRUD tests', function() {
 				done(err);
 			}
 
-			agent.post('/auth/signin')
+			agent.post('/api/auth/signin')
 				.send(credentials)
 				.expect(200)
 				.end(function(signinErr, signinRes) {

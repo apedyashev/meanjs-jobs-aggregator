@@ -49,7 +49,7 @@ describe('Subscription CRUD tests', function() {
 	});
 
 	it('should be able to save Subscription instance if logged in', function(done) {
-		agent.post('/auth/signin')
+		agent.post('/api/auth/signin')
 			.send(credentials)
 			.expect(200)
 			.end(function(signinErr, signinRes) {
@@ -107,7 +107,7 @@ describe('Subscription CRUD tests', function() {
 		// Invalidate name field
 		subscription.title = '';
 
-		agent.post('/auth/signin')
+		agent.post('/api/auth/signin')
 			.send(credentials)
 			.expect(200)
 			.end(function(signinErr, signinRes) {
@@ -134,7 +134,7 @@ describe('Subscription CRUD tests', function() {
 	});
 
 	it('should be able to update Subscription instance if signed in', function(done) {
-		agent.post('/auth/signin')
+		agent.post('/api/auth/signin')
 			.send(credentials)
 			.expect(200)
 			.end(function(signinErr, signinRes) {
@@ -222,7 +222,7 @@ describe('Subscription CRUD tests', function() {
 
 
 	it('should be able to get a list of Subscriptions if signed in', function(done) {
-		agent.post('/auth/signin')
+		agent.post('/api/auth/signin')
 			.send(credentials)
 			.expect(200)
 			.end(function(signinErr, signinRes) {
@@ -264,7 +264,7 @@ describe('Subscription CRUD tests', function() {
 	});
 
 	it('should be able to get a single Subscription if signed in', function(done) {
-		agent.post('/auth/signin')
+		agent.post('/api/auth/signin')
 			.send(credentials)
 			.expect(200)
 			.end(function(signinErr, signinRes) {
@@ -293,7 +293,7 @@ describe('Subscription CRUD tests', function() {
 	});
 
 	it('should be able to delete Subscription instance if signed in', function(done) {
-		agent.post('/auth/signin')
+		agent.post('/api/auth/signin')
 			.send(credentials)
 			.expect(200)
 			.end(function(signinErr, signinRes) {
