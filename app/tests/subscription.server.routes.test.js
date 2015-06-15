@@ -16,7 +16,7 @@ var credentials, user, subscription;
 /**
  * Subscription routes tests
  */
-describe.only('Subscription CRUD tests', function() {
+describe('Subscription CRUD tests', function() {
 	beforeEach(function(done) {
 		// Create user credentials
 		credentials = {
