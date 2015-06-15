@@ -24,10 +24,10 @@ exports.list = function(req, res) {
 		if (subscription) {
 			subscription.keywords.forEach(function(keyword) {
 				$or.push({
-					short_description: new RegExp(keyword, 'i')
+					short_description: new RegExp(keyword, 'ig')
 				});
 				$or.push({
-					title: new RegExp(keyword, 'i')
+					title: new RegExp(keyword, 'ig')
 				});
 			});
 
@@ -53,9 +53,16 @@ exports.list = function(req, res) {
 	};
 
 	if (req.query.subscriptionId) {
-		subscriptionController.subscriptionByID(req, res, function(err) {
-			findJobs(req.subscription);
-		}, req.query.subscriptionId);
+		// only authorized user can request jobs by subscriptionId
+		if (req.user && req.user.id) {
+			// subscriptionByID checks if logged user owns requested subscription
+			subscriptionController.subscriptionByID(req, res, function(err) {
+				findJobs(req.subscription);
+			}, req.query.subscriptionId);
+		}
+		else {
+			res.status(401).send('User is not authorized');
+		}
 	}
 	else {
 		findJobs();
@@ -97,6 +104,7 @@ exports.stats = function (req, res) {
 					count: '$count'
 				}
 			};
+
 			Job.aggregate([
 				{
 					$group: firstGroup
@@ -109,7 +117,7 @@ exports.stats = function (req, res) {
 				if (err) {
 					done(err);
 				} else {
-					var statsData = results[0] || {};
+					var statsData = results[0] || {a:1};
 					delete statsData._id;
 					done(null, statsData);
 				}
@@ -140,7 +148,7 @@ exports.stats = function (req, res) {
 /**
  * Job authorization middleware
  */
-exports.hasAuthorization = function(req, res, next) {
+var hasAuthorization = exports.hasAuthorization = function(req, res, next) {
 	if (req.job.user.id !== req.user.id) {
 		return res.status(403).send('User is not authorized');
 	}

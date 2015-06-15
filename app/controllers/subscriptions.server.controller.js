@@ -89,8 +89,12 @@ exports.list = function(req, res) {
  */
 exports.subscriptionByID = function(req, res, next, id) { 
 	Subscription.findById(id).populate('user', 'displayName').exec(function(err, subscription) {
-		if (err) return next(err);
-		if (! subscription) return next(new Error('Failed to load Subscription ' + id));
+		if (err) {
+			return next(err);
+		}
+		if (!subscription) {
+			return next(new Error('Failed to load Subscription ' + id));
+		}
 
 		if (subscription.user.id !== req.user.id) {
 			return next(new Error('You are not allowed to use this subscription ' + id));
