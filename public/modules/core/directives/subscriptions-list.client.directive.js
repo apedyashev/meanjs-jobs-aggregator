@@ -6,6 +6,7 @@ angular.module('core').directive('subscriptionsList', ['Subscription',
 			templateUrl: '/modules/core/views/subscriptions-list.client.view.html',
 			restrict: 'E',
 			link: function postLink(scope, element, attrs) {
+				Subscription.clear();
 			 	Subscription.query(function(data){
 					 scope.subscriptions = Subscription.getAll();
 				});

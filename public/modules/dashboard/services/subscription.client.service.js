@@ -51,6 +51,11 @@ angular.module('dashboard').factory('Subscription', ['$resource',
 			return subscriptionsList;
 		};
 
+		Subscription.clear = function() {
+			subscriptionsList = [];
+		};
+
+
 		return Subscription;
 	}
 ]);
