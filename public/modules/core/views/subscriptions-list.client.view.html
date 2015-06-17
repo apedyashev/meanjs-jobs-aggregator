@@ -1,10 +1,10 @@
 <section>
 	<div data-ng-repeat="subscription in subscriptions">
-		<a data-ng-href="/#!/dashboard/subscription/{{subscription._id}}">
+		<a data-ui-sref="dashboard.view-subscription-jobs({subscriptionId: subscription._id})">
 			{{subscription.title}}
 		</a>
 		<span class="pull-right">
-			<a data-ng-href="/#!/dashboard/edit-subscription/{{subscription._id}}">
+			<a data-ui-sref="dashboard.edit-subscription({subscriptionId: subscription._id})">
 				<i class="fa fa-pencil-square-o "></i>
 			</a>
 			<a href="javascript:void(0);" data-ng-click="removeSubscription(subscription)">

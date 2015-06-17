@@ -1,6 +1,7 @@
 <section data-ng-controller="SidebarController">
 	<div  ui-route="/dashboard/subscription/new" ng-class="{active: $uiRoute}">
-		<a href="/#!/dashboard/subscription/new">+ New Subscription</a>
+		<!--<a href="/#!/dashboard/subscription/new">+ New Subscription</a>-->
+		<a ui-sref="dashboard.new-subscription">+ New Subscription</a>
 	</div>
 
 	<subscriptions-list></subscriptions-list>

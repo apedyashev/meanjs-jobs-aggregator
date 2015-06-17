@@ -47,15 +47,7 @@
 	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
 	<section class="content">
 		<section class="container">
-			<div class="row">
-				<div class="col-md-3">
-					<section class="sidebar" data-ng-include="'/modules/core/views/sidebar.client.view.html'">
-					</section>
-				</div>
-				<div class="col-md-9">
-					{% block content %}{% endblock %}
-				</div>
-			</div>
+			{% block content %}{% endblock %}
 		</section>
 	</section>
 
@@ -66,7 +58,7 @@
 	</script>
 
 	<!--Application JavaScript Files-->
-	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %} 
+	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %}
 
 	{% if process.env.NODE_ENV === 'development' %}
 	<!--Livereload script rendered -->
