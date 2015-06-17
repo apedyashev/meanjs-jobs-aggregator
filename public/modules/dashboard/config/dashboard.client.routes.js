@@ -24,6 +24,9 @@ angular.module('dashboard').config(['$stateProvider', '$urlRouterProvider',
 				views: {
 					'content': {
 						templateUrl: 'modules/dashboard/views/new-subscription.client.view.html'
+					},
+					'jobs@dashboard': {
+						template: ''
 					}
 				}
 			}).
@@ -32,6 +35,9 @@ angular.module('dashboard').config(['$stateProvider', '$urlRouterProvider',
 				views: {
 					'content': {
 						templateUrl: 'modules/dashboard/views/edit-subscription.client.view.html'
+					},
+					'jobs@dashboard': {
+						template: ''
 					}
 				}
 			}).
@@ -39,6 +45,9 @@ angular.module('dashboard').config(['$stateProvider', '$urlRouterProvider',
 				url: '/subscription/:subscriptionId',
 				views: {
 					'content': {
+						template: ''
+					},
+					'jobs@dashboard': {
 						templateUrl: 'modules/dashboard/views/view-subscription-jobs.client.view.html'
 					}
 				}
