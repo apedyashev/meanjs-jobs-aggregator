@@ -7,6 +7,10 @@
     width: 970px;
   }
 }
+.loading-items-container {
+  margin-top: 5px;
+  color: #437e6f;
+}
 .sidebar {
   padding-right: 0;
 }
@@ -70,5 +74,4 @@
 }
 .dashboard .loading-items-container {
   margin-top: 5px;
-  color: #437e6f;
 }

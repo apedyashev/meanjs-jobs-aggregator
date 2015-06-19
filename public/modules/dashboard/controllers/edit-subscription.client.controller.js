@@ -12,9 +12,16 @@ angular.module('dashboard').controller('EditSubscriptionController', ['$scope', 
 		};
 
 		$scope.init = function() {
-			$scope.stats = Job.getStats({
+			$scope.loadInProgress = true;
+			Job.getStats({
 				cities: true
+			}).$promise.then(function(stats) {
+				$scope.stats = stats;
+				$scope.loadInProgress = false;
+			}, function() {
+					$scope.loadInProgress = false;
 			});
+
 
 			Subscription.get({
 				id: $stateParams.subscriptionId

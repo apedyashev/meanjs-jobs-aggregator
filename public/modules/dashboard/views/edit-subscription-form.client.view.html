@@ -13,6 +13,7 @@
 	Select cities
 
 	<div class="well">
+		<loader></loader>
 		<div class="checkbox" data-ng-repeat="city in stats.cities | orderBy:'toString()'">
 			<label>
 				<input type="checkbox" value="{{city.name}}" data-ng-model="subscription.selectedCities[city.name]"> {{city.name}}

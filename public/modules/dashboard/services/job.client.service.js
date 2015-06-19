@@ -55,7 +55,7 @@ angular.module('dashboard').factory('Job', ['$resource',
 		};
 
 		/**
-		 * Erases internal array 
+		 * Erases internal array
 		 */
 		Job.clearItems = function() {
 			allLoadedJobs = [];

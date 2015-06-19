@@ -7,8 +7,10 @@ angular.module('core').directive('subscriptionsList', ['Subscription', '$state',
 			restrict: 'E',
 			link: function postLink(scope, element, attrs) {
 				Subscription.clear();
+				scope.loadInProgress = true;
 			 	Subscription.query(function(data){
-					 scope.subscriptions = Subscription.getAll();
+					scope.loadInProgress = false;
+					scope.subscriptions = Subscription.getAll();
 				});
 
 
