@@ -10,16 +10,18 @@
 		<keywords-tabinput keywords="subscription.keywords"></keywords-tabinput>
 	</div>
 
-	Select cities
-
-	<div class="well">
-		<loader></loader>
-		<div class="checkbox" data-ng-repeat="city in stats.cities | orderBy:'toString()'">
-			<label>
-				<input type="checkbox" value="{{city.name}}" data-ng-model="subscription.selectedCities[city.name]"> {{city.name}}
-			</label>
+	<div class="form-group">
+		<label>Select cities</label>
+		<div class="well cities-container">
+			<loader></loader>
+			<div class="checkbox" data-ng-repeat="city in stats.cities | orderBy:'name'">
+				<label>
+					<input type="checkbox" value="{{city.name}}" data-ng-model="subscription.selectedCities[city.name]"> {{city.name}}
+				</label>
+			</div>
 		</div>
 	</div>
+
 
 	<div class="row">
 		<div class="col-sm-offset-9 col-sm-3">
