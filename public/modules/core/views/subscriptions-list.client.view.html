@@ -1,19 +1,15 @@
 <section>
-	<!--<div data-ng-repeat="subscription in subscriptions" class="item">-->
-		<a data-ng-repeat="subscription in subscriptions"
-		   class="item"
-		   data-ui-sref="dashboard.view-subscription-jobs({subscriptionId: subscription._id})"
-		   ng-class="{active: isItemActive('/dashboard/subscription', subscription)}">
-			{{subscription.title}}
-			<span class="pull-right icons">
-				<!--<a data-ui-sref="dashboard.edit-subscription({subscriptionId: subscription._id})">-->
-					<i class="fa fa-pencil-square-o " data-ng-click="editSubscription($event, subscription)"></i>
-				<!--</a>-->
-				<!--<a href="javascript:void(0);" data-ng-click="removeSubscription(subscription)">-->
-					<i class="fa fa-trash-o" data-ng-click="removeSubscription(subscription)"></i>
-				<!--</a>-->
-			</span>
-		</a>
-
-	<!--</div>-->
+	<a data-ng-repeat="subscription in subscriptions"
+	   class="item"
+	   data-ui-sref="dashboard.view-subscription-jobs({subscriptionId: subscription._id})"
+	   ng-class="{active: isItemActive('/dashboard/subscription', subscription)}">
+		{{subscription.title}}
+		<span class="pull-right icons">
+			<i class="fa fa-pencil-square-o "
+			   data-ng-click="editSubscription($event, subscription)"></i>
+			<i class="fa fa-trash-o"
+			   data-ng-click="removeSubscription(subscription)"
+			   confirm="Do you really want to delete '{{subscription.title}}'?"></i>
+		</span>
+	</a>
 </section>

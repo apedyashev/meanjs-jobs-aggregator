@@ -1,19 +1,17 @@
 <section class="sidebar" data-ng-controller="SidebarController">
-		<a ui-sref="dashboard.new-subscription"
-		   ui-route="/dashboard/subscription/new"
-		   class="item"
-		   ng-class="{active: $uiRoute}">
-			+ New Subscription
-		</a>
+	<a ui-sref="dashboard.new-subscription"
+	   ui-route="/dashboard/subscription/new"
+	   class="item"
+	   ng-class="{active: $uiRoute}">
+		+ New Subscription
+	</a>
 
-	<!--<div  ui-route="/dashboard" class="item" ng-class="{active: $uiRoute}">-->
-		<a href="/#!/dashboard"
-		   ui-route="/dashboard"
-		   class="item"
-		   ng-class="{active: $uiRoute}">
-			All Jobs
-		</a>
-	<!--</div>-->
+	<a href="/#!/dashboard"
+	   ui-route="/dashboard"
+	   class="item"
+	   ng-class="{active: $uiRoute}">
+		All Jobs
+	</a>
 
 	<subscriptions-list></subscriptions-list>
 </section>

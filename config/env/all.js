@@ -30,7 +30,8 @@ module.exports = {
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-				'public/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.js'
+				'public/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
+				'public/lib/angular-confirm/angular-confirm.js'
 			]
 		},
 		css: [
