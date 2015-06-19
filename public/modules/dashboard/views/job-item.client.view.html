@@ -1,7 +1,23 @@
-<a data-ng-repeat="job in jobs" href="{{job.link}}" class="list-group-item">
+<a data-ng-repeat="job in jobs"
+   href="{{job.link}}"
+   class="list-group-item">
+
 	<h4 class="list-group-item-text">
-		{{job.title}} <small> in <b>{{job.city}}</b></small> <span class="label label-success pull-right">{{job.availability}}</span>
+		{{job.title}} <small> in <b>{{job.city}}</b></small>
+		<span class="label label-success pull-right"
+			  tooltip-placement="bottom"
+			  tooltip="Occupancy is {{job.availability}}">
+			{{job.availability}}
+		</span>
 	</h4>
-	<div>{{job.date | date : 'd.M.yyyy'}} | {{job.company}}</div>
+	<div class="text-muted">
+		<span tooltip-placement="bottom" tooltip="Posted on {{job.date | date : 'd.M.yyyy'}}">
+			{{job.date | date : 'd.M.yyyy'}}
+		</span>
+		|
+		<span tooltip-placement="bottom" tooltip="Posted by {{job.company}}">
+			{{job.company}}
+		</span>
+	</div>
 	<p>{{job.short_description}}</p>
 </a>

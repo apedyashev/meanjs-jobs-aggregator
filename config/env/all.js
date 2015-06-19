@@ -31,6 +31,7 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
+				'public/lib/ngInfiniteScroll/build/ng-infinite-scroll.js',
 				'public/lib/angular-confirm/angular-confirm.js'
 			]
 		},

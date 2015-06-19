@@ -2,9 +2,26 @@
 
 angular.module('dashboard').controller('ViewSubscriptionJobsController', ['$scope', '$stateParams', 'Job',
 	function($scope, $stateParams, Job) {
-		$scope.find = function() {
-			$scope.jobs = Job.query({
-				subscriptionId: $stateParams.subscriptionId
+		/**
+		 * Clears internal jobs array when page before page show
+		 */
+		$scope.init = function() {
+			Job.clearItems();
+		};
+
+		$scope.loadInProgress = false;
+		/**
+		 * Loads the next page with jobs
+		 */
+		$scope.loadMoreJobs = function() {
+			if ($scope.loadInProgress) {
+				return;
+			}
+
+			$scope.loadInProgress = true;
+			Job.loadNextPage($stateParams.subscriptionId, function() {
+				$scope.jobs = Job.getItems();
+				$scope.loadInProgress = false;
 			});
 		};
 	}

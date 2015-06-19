@@ -1,5 +1,13 @@
 <section data-ng-controller="DashboardController" data-ng-init="find()">
-	<div class="list-group">
+	<div class="list-group"
+		 data-ng-init="init()"
+		 infinite-scroll="loadMoreJobs()"
+		 infinite-scroll-disabled="loadInProgress"
+		 infinite-scroll-distance="0">
+
 		<job-item job="job"></job-item>
+		<div class="text-center loading-items-container" data-ng-show="loadInProgress">
+			<i class="fa fa-spinner fa-pulse"></i> Loading data...
+		</div>
 	</div>
 </section>

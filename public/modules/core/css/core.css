@@ -39,9 +39,6 @@
 .sidebar .item .icons {
   display: none;
 }
-.center {
-  padding-left: 0;
-}
 .undecorated-link:hover {
   text-decoration: none;
 }
@@ -60,3 +57,18 @@
   border-color: #78FA89;
 }
 
+.dashboard {
+  padding-left: 0;
+}
+.dashboard h1,
+.dashboard h2,
+.dashboard h3,
+.dashboard h4,
+.dashboard h5,
+.dashboard h6 {
+  color: #437e6f;
+}
+.dashboard .loading-items-container {
+  margin-top: 5px;
+  color: #437e6f;
+}
