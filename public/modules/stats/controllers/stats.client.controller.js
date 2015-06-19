@@ -2,13 +2,15 @@
 
 angular.module('stats').controller('StatsController', ['$scope', 'Job',
 	function($scope, Job) {
-		$scope.stats = Job.getStats({
+		$scope.loadInProgress = true;
+		Job.getStats({
 			cities: true,
 			availabilities: true
-		});
-
-		$scope.stats.$promise.then(function(statsData) {
-
+		}).$promise.then(function(stats) {
+			$scope.stats = stats;
+			$scope.loadInProgress = false;
+		}, function() {
+			$scope.loadInProgress = false;
 		});
 	}
 ]);
