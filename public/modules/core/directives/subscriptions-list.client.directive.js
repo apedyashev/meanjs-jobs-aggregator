@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').directive('subscriptionsList', ['Subscription',
-	function(Subscription) {
+angular.module('core').directive('subscriptionsList', ['Subscription', '$state', '$location',
+	function(Subscription, $state, $location) {
 		return {
 			templateUrl: '/modules/core/views/subscriptions-list.client.view.html',
 			restrict: 'E',
@@ -20,6 +20,22 @@ angular.module('core').directive('subscriptionsList', ['Subscription',
 							}
 						}
 					});
+				};
+
+				scope.editSubscription = function($event, subscription) {
+					$event.preventDefault();
+					$event.stopPropagation();
+
+					console.log('edit', subscription._id);
+					//$state.go('dashboard');
+					$state.go('dashboard.edit-subscription', {
+						subscriptionId: subscription._id
+					});
+				};
+
+				scope.isItemActive = function(path, subscription) {
+					var curPath = path + '/' + subscription._id;
+					return ($location.path() === curPath);
 				};
 			}
 		};

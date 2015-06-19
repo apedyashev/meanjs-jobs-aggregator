@@ -2,8 +2,8 @@
 
 //Setting up route
 // http://www.funnyant.com/angularjs-ui-router/
-angular.module('dashboard').config(['$stateProvider', '$urlRouterProvider',
-	function($stateProvider, $urlRouterProvider) {
+angular.module('dashboard').config(['$stateProvider',
+	function($stateProvider) {
 		// Dashboard state routing
 		$stateProvider.
 			state('dashboard', {

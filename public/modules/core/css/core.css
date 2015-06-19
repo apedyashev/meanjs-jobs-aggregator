@@ -1,5 +1,46 @@
+
 .content {
   margin-top: 50px;
+}
+@media (min-width: 1200px) {
+  .content .container {
+    width: 970px;
+  }
+}
+.sidebar {
+  padding-right: 0;
+}
+.sidebar > section {
+  margin-top: 20px;
+}
+.sidebar .item {
+  padding: 5px;
+  display: block;
+  color: #437e6f;
+}
+.sidebar .item:hover {
+  background-color: #437e6f;
+  color: #ecf2f0;
+  text-decoration: none;
+  cursor: pointer;
+}
+.sidebar .item:hover .icons {
+  display: inline;
+  padding-right: 2px;
+}
+.sidebar .item.active {
+  text-decoration: none;
+  background-color: transparent;
+  color: #334440;
+}
+.sidebar .item.active:hover {
+  color: #334440;
+}
+.sidebar .item .icons {
+  display: none;
+}
+.center {
+  padding-left: 0;
 }
 .undecorated-link:hover {
   text-decoration: none;

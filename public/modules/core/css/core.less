@@ -1,6 +1,59 @@
+@import '../../../less/variables.less';
+
 .content {
     margin-top: 50px;
+
+    .container {
+        @media (min-width: 1200px) {
+            & {
+                width: 970px;
+            }
+        }
+    }
 }
+
+.sidebar {
+    padding-right: 0;
+
+    & > section {
+        margin-top: 20px;
+    }
+
+    .item {
+        padding: 5px;
+        display: block;
+        color: @links-color;
+
+        &:hover {
+            background-color: @links-color;
+            color: @links-hover-color;
+            text-decoration: none;
+            cursor: pointer;
+            .icons {
+                display: inline;
+                padding-right: 2px;
+            }
+        }
+
+        &.active {
+            text-decoration: none;
+            background-color: transparent;
+            color:  @links-disabled-color;
+            &:hover {
+                color:  @links-disabled-color;
+            }
+        }
+
+        .icons {
+            display: none;
+        }
+    }
+}
+
+.center {
+    padding-left: 0;
+}
+
 .undecorated-link:hover {
     text-decoration: none;
 }
