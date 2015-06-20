@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('dashboard').factory('Subscription', ['$resource',
-	function($resource) {
+angular.module('dashboard').factory('Subscription', ['$resource', 'Notification',
+	function($resource, Notification) {
 		var Subscription =  $resource('api/subscriptions/:id', {
 			id: '@_id'
 		}, {
@@ -14,7 +14,11 @@ angular.module('dashboard').factory('Subscription', ['$resource',
 						subscriptionsList.push(new Subscription(item));
 					});
 					return subscriptionsList;
-				}
+				},
+				interceptor: Notification.interceptor
+			},
+			get: {
+				interceptor: Notification.interceptor
 			},
 			save: {
 				method: 'POST',
@@ -25,7 +29,8 @@ angular.module('dashboard').factory('Subscription', ['$resource',
 						subscriptionObject = new Subscription(dataObject);
 					subscriptionsList.push(subscriptionObject);
 					return angular.fromJson(data);
-				}
+				},
+				interceptor: Notification.interceptor
 			},
 			update: {
 				method: 'PUT',
@@ -42,7 +47,12 @@ angular.module('dashboard').factory('Subscription', ['$resource',
 					}
 
 					return subscriptionObject;
-				}
+				},
+				interceptor: Notification.interceptor
+			},
+			remove: {
+				method: 'DELETE',
+				interceptor: Notification.interceptor
 			}
 		});
 

@@ -19,8 +19,14 @@ angular.module('dashboard').controller('ViewSubscriptionJobsController', ['$scop
 			}
 
 			$scope.loadInProgress = true;
-			Job.loadNextPage($stateParams.subscriptionId, function() {
-				$scope.jobs = Job.getItems();
+			Job.loadNextPage($stateParams.subscriptionId, function(err) {
+				if (err) {
+					$scope.loadingError = true;
+				}
+				else {
+					$scope.loadingError = false;
+					$scope.jobs = Job.getItems();
+				}
 				$scope.loadInProgress = false;
 			});
 		};

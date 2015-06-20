@@ -15,7 +15,8 @@ module.exports = {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.css',
 				'public/lib/font-awesome/css/font-awesome.css',
-				'public/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.css'
+				'public/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.css',
+				'public/lib/growl/stylesheets/jquery.growl.css'
 			],
 			js: [
 				'public/lib/jquery/dist/jquery.js',
@@ -30,6 +31,7 @@ module.exports = {
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
 				'public/lib/ngInfiniteScroll/build/ng-infinite-scroll.js',
+				'public/lib/growl/javascripts/jquery.growl.js',
 				'public/lib/angular-confirm/angular-confirm.js'
 			]
 		},

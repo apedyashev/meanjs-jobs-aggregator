@@ -1,20 +1,23 @@
 'use strict';
 
-angular.module('dashboard').factory('Job', ['$resource',
-	function($resource) {
+angular.module('dashboard').factory('Job', ['$resource', 'Notification',
+	function($resource, Notification) {
 		var Job = $resource('api/jobs/:jobId', {
 			articleId: '@_id'
 		}, {
 			query: {
 				method: 'GET',
-				isArray: true
+				isArray: true,
+				interceptor: Notification.interceptor
 			},
 			update: {
-				method: 'PUT'
+				method: 'PUT',
+				interceptor: Notification.interceptor
 			},
 			getStats: {
 				method: 'GET',
-				url: '/api/jobs/stats'
+				url: '/api/jobs/stats',
+				interceptor: Notification.interceptor
 			}
 		});
 
@@ -39,11 +42,14 @@ angular.module('dashboard').factory('Job', ['$resource',
 			if (subscriptionId) {
 				params.subscriptionId = subscriptionId;
 			}
-			Job.query(params, function(jobs) {
+
+			Job.query(params).$promise.then(function(jobs) {
 				angular.forEach(jobs, function(job) {
 					allLoadedJobs.push(job);
 				});
 				onDone();
+			}, function(error) {
+				onDone(error);
 			});
 		};
 
