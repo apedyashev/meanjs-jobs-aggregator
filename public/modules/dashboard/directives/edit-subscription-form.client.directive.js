@@ -23,14 +23,18 @@ angular.module('dashboard').directive('editSubscriptionForm', ['$location', 'Job
 				 * Updates existing or creates a new subscription
 				 */
 				scope.save = function() {
-					var cities = $.map(scope.subscription.selectedCities, function(value, key) {
-							return key;
-						}),
+					var cities = [],
 						subscription = new Subscription({
 							title: scope.subscription.title,
 							cities: cities,
 							keywords: scope.subscription.keywords
 						});
+
+					$.each(scope.subscription.selectedCities, function(key, value) {
+						if (value) {
+							cities.push(key);
+						}
+					});
 
 					// update existing subscription
 					if (scope.subscriptionId) {
