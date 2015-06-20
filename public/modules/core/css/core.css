@@ -7,6 +7,14 @@
     width: 970px;
   }
 }
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+  color: #437e6f;
+}
 .loading-items-container {
   margin-top: 5px;
   color: #437e6f;
@@ -64,14 +72,6 @@
 .dashboard {
   padding-left: 0;
 }
-.dashboard h1,
-.dashboard h2,
-.dashboard h3,
-.dashboard h4,
-.dashboard h5,
-.dashboard h6 {
-  color: #437e6f;
-}
 .dashboard .loading-items-container {
   margin-top: 5px;
 }
@@ -85,4 +85,19 @@
 }
 .dashboard .cities-container .loading-items-container {
   margin-top: 15px;
+}
+
+.stats-content {
+  margin-top: 10px;
+}
+.stats-content .progress {
+  margin-bottom: 2px;
+  height: 16px;
+}
+.stats-content .progress .progress-bar {
+  color: #000;
+  line-height: 16px;
+}
+.stats-content .progress .progress-bar span {
+  white-space: nowrap;
 }
