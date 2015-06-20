@@ -1,7 +1,7 @@
-<form data-ng-submit="save()">
+<form name="editSubscriptionForm" novalidate data-ng-submit="save()">
 	<div class="form-group">
 		<label>Title</label>
-		<input type="text" class="form-control" data-ng-model="subscription.title" placeholder="Subscription's title">
+		<input type="text" class="form-control" data-ng-model="subscription.title" placeholder="Subscription's title" required>
 	</div>
 
 
@@ -37,7 +37,7 @@
 					<a href="/#!/dashboard" class="btn btn-default pull-right">Cancel</a>
 				</div>
 				<div class="col-sm-6">
-					<button type="submit" class="btn btn-success pull-right">Save</button>
+					<button type="submit" class="btn btn-success pull-right" data-ng-disabled="!editSubscriptionForm.$valid">Save</button>
 				</div>
 			</div>
 		</div>
