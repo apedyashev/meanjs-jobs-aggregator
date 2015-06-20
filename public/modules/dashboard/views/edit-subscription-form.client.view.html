@@ -11,10 +11,17 @@
 	</div>
 
 	<div class="form-group">
-		<label>Select cities</label>
+		<div class="row cities-title">
+			<div class="col-xs-12 col-sm-6">
+				<label>Select cities </label>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+				<search-input value="search.city"></search-input>
+			</div>
+		</div>
 		<div class="well cities-container">
 			<loader></loader>
-			<div class="checkbox" data-ng-repeat="city in stats.cities | orderBy:'name'">
+			<div class="checkbox" data-ng-repeat="city in stats.cities | orderBy:'name' | filter: {name: search.city} ">
 				<label>
 					<input type="checkbox" value="{{city.name}}" data-ng-model="subscription.selectedCities[city.name]"> {{city.name}}
 				</label>

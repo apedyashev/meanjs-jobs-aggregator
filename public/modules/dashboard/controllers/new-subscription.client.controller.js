@@ -3,6 +3,9 @@
 angular.module('dashboard').controller('NewSubscriptionController', ['$scope', '$location', 'Job', 'Subscription',
 	function($scope, $location,  Job, Subscription) {
 
+		$scope.search = {
+			city: ''
+		};
 		$scope.subscription = {
 			_id: null,
 			title: '',

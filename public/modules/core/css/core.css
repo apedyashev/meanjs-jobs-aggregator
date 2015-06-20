@@ -2,6 +2,10 @@
 .navbar.navbar-fixed-top {
   background-color: #fff;
 }
+.navbar.navbar-fixed-top a {
+  color: #437e6f;
+  text-transform: uppercase;
+}
 .navbar.navbar-fixed-top li a {
   color: #888;
   text-shadow: 0px 0px 0px;
@@ -15,7 +19,7 @@
   background: none;
 }
 .content {
-  margin-top: 50px;
+  margin-top: 51px;
 }
 @media (min-width: 1200px) {
   .content .container {
@@ -93,6 +97,9 @@
 .dashboard .bootstrap-tagsinput {
   display: block;
 }
+.dashboard .bootstrap-tagsinput .tag {
+  background-color: #437e6f;
+}
 .dashboard .cities-container {
   max-height: 175px;
   overflow-y: scroll;
@@ -100,6 +107,13 @@
 }
 .dashboard .cities-container .loading-items-container {
   margin-top: 15px;
+}
+.dashboard .cities-title label {
+  line-height: 30px;
+}
+.dashboard .cities-title .form-group {
+  width: 102px;
+  margin-bottom: 5px;
 }
 
 .stats-content {
