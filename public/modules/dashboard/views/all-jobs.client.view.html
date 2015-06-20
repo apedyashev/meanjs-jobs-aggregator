@@ -1,11 +1,3 @@
-<section data-ng-controller="DashboardController" data-ng-init="find()">
-	<div class="list-group"
-		 data-ng-init="init()"
-		 infinite-scroll="loadMoreJobs()"
-		 infinite-scroll-disabled="loadInProgress"
-		 infinite-scroll-distance="0">
-
-		<job-item job="job"></job-item>
-		<loader></loader>
-	</div>
+<section data-ng-controller="DashboardController">
+	<jobs-list></jobs-list>
 </section>

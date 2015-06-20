@@ -1,0 +1,14 @@
+<div class="list-group"
+	 data-ng-init="init()"
+	 infinite-scroll="loadMoreJobs()"
+	 infinite-scroll-disabled="loadInProgress || loadingError"
+	 infinite-scroll-distance="0">
+
+	<job-item job="job"></job-item>
+
+	<div class="text-center error" data-ng-show="loadingError && !jobs.length">
+		<i class="fa fa-times-circle"></i> Failed to load jobs
+	</div>
+
+	<loader></loader>
+</div>

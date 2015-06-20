@@ -1,9 +1,3 @@
-<section data-ng-controller="ViewSubscriptionJobsController"
-		 data-ng-init="init()"
-		 infinite-scroll="loadMoreJobs()"
-		 infinite-scroll-disabled="loadInProgress || loadingError"
-		 infinite-scroll-distance="0">
-	<job-item job="job"></job-item>
-
-	<loader></loader>
+<section data-ng-controller="ViewSubscriptionJobsController">
+	<jobs-list subscription-id="subscriptionId"></jobs-list>
 </section>
