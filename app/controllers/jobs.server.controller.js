@@ -34,9 +34,11 @@ exports.list = function(req, res) {
 			query = {
 				city: {
 					$in: subscription.cities
-				},
-				$or: $or
+				}
 			};
+			if ($or.length) {
+				query.$or = $or;
+			}
 		}
 
 		var limit = req.query.limit || 20,
