@@ -1,5 +1,22 @@
 @import '../../../less/variables.less';
 
+.navbar.navbar-fixed-top {
+    background-color: #fff;
+
+    li {
+        a {
+            color: #888;
+            text-shadow: 0px 0px 0px;
+        }
+        &.active a, a:hover {
+            color: @links-color;
+            border-top: 3px solid #437e6e;
+            margin-top: 10px;
+            padding-top: 2px;
+            background: none;
+        }
+    }
+}
 .content {
     margin-top: 50px;
 
