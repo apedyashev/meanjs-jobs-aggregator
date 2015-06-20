@@ -47,7 +47,7 @@ angular.module('dashboard').factory('Job', ['$resource', 'Notification',
 				angular.forEach(jobs, function(job) {
 					allLoadedJobs.push(job);
 				});
-				onDone();
+				onDone(null, jobs);
 			}, function(error) {
 				onDone(error);
 			});

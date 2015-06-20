@@ -12,16 +12,19 @@ angular.module('dashboard').directive('jobsList', ['$stateParams', 'Job',
 				// Clears internal jobs array when page before page show
 				Job.clearItems();
 
-				scope.loadInProgress = false;
+
 				/**
 				 * Loads the next page with jobs
 				 */
+				var retriesCount = 0;
+				scope.loadInProgress = false;
+				scope.retriesCountExceeded = false;
 				scope.loadMoreJobs = function() {
 					if (scope.loadInProgress) {
 						return;
 					}
 
-					var onPageLoaded = function(err) {
+					var onPageLoaded = function(err, currentJobs) {
 						if (err) {
 							scope.loadingError = true;
 						}
@@ -30,6 +33,14 @@ angular.module('dashboard').directive('jobsList', ['$stateParams', 'Job',
 							scope.jobs = Job.getItems();
 						}
 						scope.loadInProgress = false;
+
+						// prevent request resending if empty array is received
+						if (err || !currentJobs || !currentJobs.length) {
+							retriesCount++;
+							if (retriesCount > 10) {
+								scope.retriesCountExceeded = true;
+							}
+						}
 					};
 
 					scope.loadInProgress = true;

@@ -1,7 +1,7 @@
 <div class="list-group"
 	 data-ng-init="init()"
 	 infinite-scroll="loadMoreJobs()"
-	 infinite-scroll-disabled="loadInProgress || loadingError"
+	 infinite-scroll-disabled="loadInProgress || loadingError || retriesCountExceeded"
 	 infinite-scroll-distance="0">
 
 	<job-item job="job"></job-item>

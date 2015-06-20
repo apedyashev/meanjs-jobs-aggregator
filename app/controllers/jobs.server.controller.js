@@ -31,11 +31,11 @@ exports.list = function(req, res) {
 				});
 			});
 
-			query = {
-				city: {
+			if (subscription.cities.length) {
+				query.city = {
 					$in: subscription.cities
-				}
-			};
+				};
+			}
 			if ($or.length) {
 				query.$or = $or;
 			}
