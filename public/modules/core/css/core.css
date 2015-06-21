@@ -48,6 +48,10 @@
 .navbar.navbar-fixed-top .nav .user-menu.open > a {
   background: none;
 }
+.content-header {
+  background: url(../../../images/cut_header.png) no-repeat center -24px #d7d7d7;
+  margin-bottom: 40px;
+}
 .content {
   margin-top: 59px;
 }
