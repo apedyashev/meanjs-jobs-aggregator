@@ -32,7 +32,8 @@ module.exports = {
 				'public/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
 				'public/lib/ngInfiniteScroll/build/ng-infinite-scroll.js',
 				'public/lib/growl/javascripts/jquery.growl.js',
-				'public/lib/angular-confirm/angular-confirm.js'
+				'public/lib/angular-confirm/angular-confirm.js',
+				'public/lib/angular-gravatar/build/angular-gravatar.js'
 			]
 		},
 		css: [

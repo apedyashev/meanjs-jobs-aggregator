@@ -39,9 +39,11 @@
 			<li ui-route="/statistics" ng-class="{active: $uiRoute}">
 				<a href="/#!/statistics">Statistics</a>
 			</li>
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
+			<li class="dropdown user-menu" ng-class="{active: isMenuActive('/settings')}" dropdown>
+				<a href="#" class="dropdown-toggle" dropdown-toggle>
+					<span data-ng-bind="authentication.user.displayName"></span>
+					<img gravatar-src-once="authentication.user.email">
+					<b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
 					<li>
