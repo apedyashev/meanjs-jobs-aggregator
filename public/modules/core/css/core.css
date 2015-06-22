@@ -23,8 +23,14 @@
 .jobs-aggregator .btn.btn-success:hover {
   background-color: #334440;
 }
+.jobs-aggregator .btn.btn-default {
+  color: #437e6f;
+}
 .jobs-aggregator .label-success {
   background-color: #437e6f;
+}
+.jobs-aggregator .progress {
+  border-radius: 0;
 }
 
 @media (min-width: 1200px) {
@@ -51,11 +57,18 @@
 .jobs-aggregator .btn.btn-success:hover {
   background-color: #334440;
 }
+.jobs-aggregator .btn.btn-default {
+  color: #437e6f;
+}
 .jobs-aggregator .label-success {
   background-color: #437e6f;
 }
+.jobs-aggregator .progress {
+  border-radius: 0;
+}
 body {
   background-color: #eeeeee;
+  padding-bottom: 20px;
 }
 .navbar.navbar-fixed-top {
   background-color: #fff;
@@ -69,12 +82,31 @@ body {
   color: #888;
   text-shadow: 0 0 0;
 }
+@media (max-width: 767px) {
+  .navbar.navbar-fixed-top .nav > li > a {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+}
 .navbar.navbar-fixed-top .nav > li.active > a,
 .navbar.navbar-fixed-top .nav > li > a:hover {
   color: #437e6f;
   border-top: 3px solid #437e6e;
   margin-top: 10px;
   padding-top: 2px;
+}
+@media (max-width: 767px) {
+  .navbar.navbar-fixed-top .nav > li.active > a,
+  .navbar.navbar-fixed-top .nav > li > a:hover {
+    border-top: none;
+    color: #334440;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
 }
 .navbar.navbar-fixed-top .nav > li.active a,
 .navbar.navbar-fixed-top .nav > li a:hover {
@@ -104,8 +136,20 @@ body {
   border-top: 3px solid #437e6e;
   padding-top: 4px;
 }
+@media (max-width: 767px) {
+  .navbar.navbar-fixed-top .nav .user-menu.active > a span,
+  .navbar.navbar-fixed-top .nav .user-menu > a:hover span {
+    border-top: none;
+  }
+}
 .navbar.navbar-fixed-top .nav .user-menu.open > a {
   background: none;
+}
+.navbar.navbar-fixed-top .navbar-toggle {
+  border-color: #000;
+}
+.navbar.navbar-fixed-top .navbar-toggle .icon-bar {
+  background-color: #000;
 }
 .content-header {
   background: url(../../../images/cut_header.png) no-repeat center -24px #d7d7d7;
@@ -153,6 +197,36 @@ body {
 .sidebar .item .icons {
   display: none;
 }
+.sidebar .navbar-toggle {
+  float: none;
+  border-color: #000;
+}
+.sidebar .navbar-toggle .icon-bar {
+  background-color: #000;
+}
+.sidebar .menu-opener {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-transform: uppercase;
+}
+.sidebar .menu-opener:hover {
+  cursor: pointer;
+}
+@media (max-width: 767px) {
+  .sidebar {
+    padding-right: 15px;
+  }
+}
+@media (min-width: 480px) {
+  .sidebar .collapse {
+    display: block;
+  }
+}
+@media (max-width: 767px) {
+  .pull-left-xs {
+    float: left !important;
+  }
+}
 .undecorated-link:hover {
   text-decoration: none;
 }
@@ -176,6 +250,11 @@ body {
 }
 .dashboard {
   padding-left: 0;
+}
+@media (max-width: 767px) {
+  .dashboard {
+    padding-left: 15px;
+  }
 }
 .dashboard .loading-items-container {
   margin-top: 5px;

@@ -1,8 +1,10 @@
 @import '../../../less/variables.less';
 @import './bootstrap-overrides.less';
+@import '../../../lib/bootstrap/less/variables.less';
 
 body {
     background-color: @body-background-color;
+    padding-bottom: 20px;
 }
 
 .navbar.navbar-fixed-top {
@@ -18,12 +20,26 @@ body {
             & > a {
                 color: #888;
                 text-shadow: 0 0 0;
+                @media (max-width: @screen-xs-max) {
+                    margin-top: 0;
+                    margin-bottom: 0;
+                    padding-top: 2px;
+                    padding-bottom: 2px;
+                }
             }
             &.active > a, & > a:hover {
                 color: @links-color;
                 border-top: 3px solid #437e6e;
                 margin-top: 10px;
                 padding-top: 2px;
+                @media (max-width: @screen-xs-max) {
+                    border-top: none;
+                    color: @links-disabled-color;
+                    margin-top: 0;
+                    margin-bottom: 0;
+                    padding-top: 2px;
+                    padding-bottom: 2px;
+                }
             }
             &.active a, a:hover {
                 background: none;
@@ -52,6 +68,9 @@ body {
                 span {
                     border-top: 3px solid #437e6e;
                     padding-top: 4px;
+                    @media (max-width: @screen-xs-max) {
+                        border-top: none;
+                    }
                 }
             }
             &.open {
@@ -62,6 +81,14 @@ body {
 
         }
     }
+
+    .navbar-toggle {
+        border-color: #000;
+        .icon-bar {
+            background-color: #000;
+        }
+    }
+
 }
 
 .content-header {
@@ -117,6 +144,37 @@ body {
         .icons {
             display: none;
         }
+    }
+
+    .navbar-toggle {
+        float: none;
+        border-color: #000;
+        .icon-bar {
+            background-color: #000;
+        }
+    }
+
+    .menu-opener {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        text-transform: uppercase;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    @media (max-width: @screen-xs-max) {
+        padding-right: 15px;
+    }
+    @media (min-width: @screen-xs-min) {
+        .collapse {
+            display: block;
+        }
+    }
+}
+
+@media (max-width: @screen-xs-max) {
+    .pull-left-xs {
+        float: left !important;
     }
 }
 

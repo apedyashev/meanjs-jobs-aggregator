@@ -1,8 +1,14 @@
 @import '../../../less/variables.less';
+@import '../../../lib/bootstrap/less/variables.less';
 @import './job-item.less';
 
 .dashboard {
     padding-left: 0;
+
+    @media (max-width: @screen-xs-max) {
+        padding-left: 15px;
+    }
+
 
     .loading-items-container {
         margin-top: 5px;
