@@ -1,0 +1,29 @@
+@import '../../../less/variables.less';
+.jobs-aggregator {
+    .container {
+        @media (min-width: 1200px) {
+            & {
+                width: 970px;
+            }
+        }
+    }
+
+    h1, h2, h3, h4, h5, h6, a {
+        color: @links-color;
+    }
+
+    .btn {
+        color: #fff;
+        &.btn-success {
+            background-color: @links-color;
+            border-color: @links-color;
+            &:hover {
+                background-color: @links-disabled-color;
+            }
+        }
+    }
+
+    .label-success {
+        background-color: @links-color;
+    }
+}
