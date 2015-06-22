@@ -28,8 +28,6 @@ angular.module('core').directive('subscriptionsList', ['Subscription', '$state',
 					$event.preventDefault();
 					$event.stopPropagation();
 
-					console.log('edit', subscription._id);
-					//$state.go('dashboard');
 					$state.go('dashboard.edit-subscription', {
 						subscriptionId: subscription._id
 					});

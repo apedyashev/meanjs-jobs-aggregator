@@ -2,7 +2,7 @@
 
 angular.module('dashboard').factory('Job', ['$resource', 'Notification',
 	function($resource, Notification) {
-		var Job = $resource('api/jobs/:jobId', {
+		var Job = $resource('/api/jobs/:jobId', {
 			articleId: '@_id'
 		}, {
 			query: {

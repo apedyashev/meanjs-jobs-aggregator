@@ -2,7 +2,7 @@
 
 angular.module('dashboard').factory('Subscription', ['$resource', 'Notification',
 	function($resource, Notification) {
-		var Subscription =  $resource('api/subscriptions/:id', {
+		var Subscription =  $resource('/api/subscriptions/:id', {
 			id: '@_id'
 		}, {
 			query: {

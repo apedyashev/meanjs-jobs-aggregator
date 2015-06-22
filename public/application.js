@@ -6,7 +6,9 @@ angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfig
 // Setting HTML5 Location Mode
 angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
 	function($locationProvider) {
-		$locationProvider.hashPrefix('!');
+		//$locationProvider.hashPrefix('!');
+		// use the HTML5 History API
+		$locationProvider.html5Mode(true);
 	}
 ]);
 
