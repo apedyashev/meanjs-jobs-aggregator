@@ -171,6 +171,9 @@ body {
   border-color: #78FA89;
 }
 
+.job-item .description {
+  color: #000;
+}
 .dashboard {
   padding-left: 0;
 }
@@ -203,6 +206,10 @@ body {
   margin-top: 30px;
   color: #AD0A0A;
   font-weight: bold;
+}
+
+.job-item .description {
+  color: #000;
 }
 
 .stats-content {

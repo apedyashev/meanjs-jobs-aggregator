@@ -1,6 +1,6 @@
 <a data-ng-repeat="job in jobs"
    href="{{job.link}}"
-   class="list-group-item">
+   class="list-group-item job-item">
 
 	<h4 class="list-group-item-text">
 		{{job.title}} <small> <span data-ng-show="job.city">in</span> <b>{{job.city}}</b></small>
@@ -19,5 +19,5 @@
 			{{job.company}}
 		</span>
 	</div>
-	<p>{{job.short_description}}</p>
+	<p class="description">{{job.short_description}}</p>
 </a>
