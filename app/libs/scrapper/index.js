@@ -29,7 +29,6 @@ module.exports = function() {
                 async.each(jsonResponse.results, function(jobData, stepDone) {
                     try {
                         jobData.date = moment(jobData.date, 'DD.MM.YYYY').format();
-                        console.log(jobData.date);
                         var job = new Job(jobData);
                         job.save(function(err) {
                             if (err && (err.code !== 11000) && (err.code !== 11001)) {

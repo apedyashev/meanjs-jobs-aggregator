@@ -35,7 +35,6 @@ exports = module.exports = app;
 // Logging initialization
 console.log('MEAN.JS application started on port ' + config.port);
 
-var oneHour = config.scrapper.importInterval;
 setInterval(function () {
 	var scrapper = require('./app/libs/scrapper')();
 	console.error(chalk.green('Scrapping started'));
@@ -43,7 +42,25 @@ setInterval(function () {
 		if (err) {
 			console.error(chalk.red('Error while scrapping'), err);
 		} else {
-			console.log('Scrapping done');
+			console.error(chalk.green('Scrapping done'));
 		}
 	});
-},oneHour);
+}, config.scrapper.importInterval);
+
+/**
+ * Remove jobs older than 1 month
+ */
+var ONE_MONTH = 360000 * 24;
+setInterval(function () {
+	var Job = mongoose.model('Job'),
+		today = new Date(),
+		monthAgo = today.setMonth(today.getMonth() - 1);
+	Job.find({created: {$lt: monthAgo}}).remove().exec(function(err, removed) {
+		if (err) {
+			console.error(chalk.red('Error while removing old documents'), err);
+		}
+		else {
+			console.error(chalk.green('Old documents removed: ' + removed));
+		}
+	});
+}, ONE_MONTH);
