@@ -57,7 +57,9 @@
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="/auth/signout">Signout</a>
+						<a data-ng-click="signOut()">
+							<i class="fa fa-spinner fa-pulse" data-ng-show="isSigningOut"></i> Signout
+						</a>
 					</li>
 				</ul>
 			</li>

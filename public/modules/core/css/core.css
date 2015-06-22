@@ -5,6 +5,7 @@
 .navbar.navbar-fixed-top a {
   color: #437e6f;
   text-transform: uppercase;
+  cursor: pointer;
 }
 .navbar.navbar-fixed-top .nav > li > a {
   color: #888;

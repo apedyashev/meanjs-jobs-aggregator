@@ -4,11 +4,14 @@
 angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
 
 // Setting HTML5 Location Mode
-angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
-	function($locationProvider) {
-		//$locationProvider.hashPrefix('!');
+angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider', '$httpProvider',
+	function($locationProvider, $httpProvider) {
 		// use the HTML5 History API
+		// more info here: https://scotch.io/quick-tips/pretty-urls-in-angularjs-removing-the-hashtag
 		$locationProvider.html5Mode(true);
+
+		// make backend-checking of 'req.xhr' working for ajax requests
+		$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 	}
 ]);
 
