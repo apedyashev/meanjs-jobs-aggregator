@@ -27,6 +27,7 @@ angular.module('core').controller('HeaderController', ['$scope', '$location', '$
 				.success(function() {
 					$scope.isSigningOut = false;
 					Notification.showSuccess('Signed out');
+					$scope.authentication.user = null;
 					$location.path('/');
 				})
 				.error(function(response) {
