@@ -1,20 +1,22 @@
-<section class="stats-content" data-ng-controller="StatsController">
-	<loader></loader>
-	<div data-ng-show="stats.cities">
-		<h4>Jobs in cities</h4>
-		<progressbar data-ng-repeat="city in stats.cities | orderBy:'count':'reverse'"
-					 value="(city.count * 100) / maxCityCount">
-			{{city.name}} ({{city.count}})
-		</progressbar>
-	</div>
+<section class="container">
+	<section class="stats-content" data-ng-controller="StatsController">
+		<loader></loader>
+		<div data-ng-show="stats.cities">
+			<h4>Jobs in cities</h4>
+			<progressbar data-ng-repeat="city in stats.cities | orderBy:'count':'reverse'"
+						 value="(city.count * 100) / maxCityCount">
+				{{city.name}} ({{city.count}})
+			</progressbar>
+		</div>
 
-	<div data-ng-show="stats.availabilities">
-		<hr>
-		<h4>Occupancies statistics</h4>
-		<progressbar data-ng-repeat="availability in stats.availabilities | orderBy:'count':'reverse'"
-					 value="(availability.count * 100) / maxAvailCount"
-					type="success">
-			{{availability.name}} ({{availability.count}})
-		</progressbar>
-	</div>
+		<div data-ng-show="stats.availabilities">
+			<hr>
+			<h4>Occupancies statistics</h4>
+			<progressbar data-ng-repeat="availability in stats.availabilities | orderBy:'count':'reverse'"
+						 value="(availability.count * 100) / maxAvailCount"
+						type="success">
+				{{availability.name}} ({{availability.count}})
+			</progressbar>
+		</div>
+	</section>
 </section>
