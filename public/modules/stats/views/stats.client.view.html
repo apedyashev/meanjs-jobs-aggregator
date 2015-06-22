@@ -4,7 +4,10 @@
 		<div data-ng-show="stats.cities">
 			<h4>Jobs in cities</h4>
 			<progressbar data-ng-repeat="city in stats.cities | orderBy:'count':'reverse'"
-						 value="(city.count * 100) / maxCityCount">
+						 value="(city.count * 100) / maxCityCount"
+						 type="success"
+						 tooltip-placement="bottom"
+						 tooltip="{{city.count}} jobs in {{city.name}}">
 				{{city.name}} ({{city.count}})
 			</progressbar>
 		</div>
@@ -14,7 +17,9 @@
 			<h4>Occupancies statistics</h4>
 			<progressbar data-ng-repeat="availability in stats.availabilities | orderBy:'count':'reverse'"
 						 value="(availability.count * 100) / maxAvailCount"
-						type="success">
+						type="info"
+						 tooltip-placement="bottom"
+						 tooltip="{{availability.count}} job offers with '{{availability.name}}' occupancy">
 				{{availability.name}} ({{availability.count}})
 			</progressbar>
 		</div>
