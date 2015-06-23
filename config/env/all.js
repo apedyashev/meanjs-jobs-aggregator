@@ -2,7 +2,7 @@
 
 module.exports = {
 	app: {
-		title: 'jobs-aggregator',
+		title: 'Jobs Aggregator',
 		description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
 		keywords: 'MongoDB, Express, AngularJS, Node.js'
 	},
@@ -19,16 +19,16 @@ module.exports = {
 				'public/lib/growl/stylesheets/jquery.growl.css'
 			],
 			js: [
-				'public/lib/jquery/dist/jquery.js',
 				'public/lib/angular/angular.js',
 				'public/lib/angular-resource/angular-resource.js',
-				'public/lib/angular-cookies/angular-cookies.js',
-				'public/lib/angular-animate/angular-animate.js',
-				'public/lib/angular-touch/angular-touch.js',
+				//'public/lib/angular-cookies/angular-cookies.js',
+				//'public/lib/angular-animate/angular-animate.js',
+				//'public/lib/angular-touch/angular-touch.js',
 				'public/lib/angular-sanitize/angular-sanitize.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
-				'public/lib/angular-ui-utils/ui-utils.js',
+				//'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+				'public/lib/jquery/dist/jquery.js',
 				'public/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
 				'public/lib/ngInfiniteScroll/build/ng-infinite-scroll.js',
 				'public/lib/growl/javascripts/jquery.growl.js',

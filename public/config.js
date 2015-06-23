@@ -4,7 +4,13 @@
 var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'jobs-aggregator';
-	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils', 'angular-confirm', 'infinite-scroll', 'ui.gravatar'];
+	var applicationModuleVendorDependencies = ['ngResource',
+		'ngSanitize',
+		'ui.router',
+		'ui.bootstrap',
+		'angular-confirm',
+		'infinite-scroll',
+		'ui.gravatar'];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {

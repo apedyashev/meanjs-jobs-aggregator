@@ -104,7 +104,7 @@ module.exports = function(grunt) {
 		cssmin: {
 			combine: {
 				files: {
-					'public/dist/application.min.css': '<%= applicationCSSFiles %>'
+					'public/dist/application.min.css': ['public/modules/core/css/core.css', '<%= applicationCSSFiles %>']
 				}
 			}
 		},
@@ -165,7 +165,19 @@ module.exports = function(grunt) {
 			unit: {
 				configFile: 'karma.conf.js'
 			}
-		}
+		},
+		copy: {
+			dist: {
+				files: [{
+					//for font-awesome
+					expand: true,
+					dot: true,
+					cwd: 'public/lib/font-awesome',
+					src: ['fonts/*.*'],
+					dest: 'public'
+				}]
+			}
+	}
 	});
 
 	// Load NPM tasks
@@ -179,8 +191,8 @@ module.exports = function(grunt) {
 		var init = require('./config/init')();
 		var config = require('./config/config');
 
-		grunt.config.set('applicationJavaScriptFiles', config.assets.js);
-		grunt.config.set('applicationCSSFiles', config.assets.css);
+		grunt.config.set('applicationJavaScriptFiles', config.assets.lib.js.concat(config.assets.js));
+		grunt.config.set('applicationCSSFiles', config.assets.lib.css.concat(config.assets.css));
 	});
 
 	// Default task(s).
@@ -196,7 +208,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('lint', ['jshint', 'less', 'csslint']);
 
 	// Build task(s).
-	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
+	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin', 'copy']);
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);

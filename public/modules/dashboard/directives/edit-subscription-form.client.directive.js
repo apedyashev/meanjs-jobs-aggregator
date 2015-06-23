@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('dashboard').directive('editSubscriptionForm', ['$location', 'Job', 'Subscription',
-	function($location,  Job, Subscription) {
+angular.module('dashboard').directive('editSubscriptionForm', ['$location', 'Job', 'Subscription', 'Notification',
+	function($location,  Job, Subscription, Notification) {
 		return {
 			templateUrl: '/modules/dashboard/views/edit-subscription-form.client.view.html',
 			restrict: 'E',
@@ -40,7 +40,7 @@ angular.module('dashboard').directive('editSubscriptionForm', ['$location', 'Job
 					if (scope.subscriptionId) {
 						subscription._id = scope.subscriptionId;
 						subscription.$update(function(response) {
-							//$location.path('articles/' + response._id);
+							Notification.showSuccess('Saved!');
 						}, function(errorResponse) {
 							scope.error = errorResponse.data.message;
 						});
@@ -48,6 +48,7 @@ angular.module('dashboard').directive('editSubscriptionForm', ['$location', 'Job
 					// create a new subscription
 					else {
 						subscription.$save(function(response) {
+							Notification.showSuccess('Saved!');
 							$location.path('dashboard/subscription/' + response._id);
 						}, function(errorResponse) {
 							scope.error = errorResponse.data.message;
