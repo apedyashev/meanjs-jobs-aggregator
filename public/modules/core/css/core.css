@@ -286,8 +286,12 @@ body {
 .dashboard .jobs .error {
   font-size: 17px;
   margin-top: 30px;
-  color: #AD0A0A;
+  color: #ad0a0a;
   font-weight: bold;
+}
+.dashboard .jobs .no-jobs {
+  margin-top: 30px;
+  color: #ad0a0a;
 }
 
 .job-item .description {

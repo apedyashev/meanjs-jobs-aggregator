@@ -4,7 +4,11 @@
 	 infinite-scroll-disabled="loadInProgress || loadingError || retriesCountExceeded"
 	 infinite-scroll-distance="0">
 
-	<job-item job="job"></job-item>
+	<job-item></job-item>
+
+	<h4 data-ng-show="retriesCountExceeded && !jobs.length" class="well text-center text-danger no-jobs">
+		No Jobs Found
+	</h4>
 
 	<div class="text-center error" data-ng-show="loadingError && !jobs.length">
 		<i class="fa fa-times-circle"></i> Failed to load jobs

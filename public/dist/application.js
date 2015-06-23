@@ -42854,14 +42854,9 @@ var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'jobs-aggregator';
 	var applicationModuleVendorDependencies = ['ngResource',
-		//'ngRoute',
-		//'ngCookies',
-		//'ngAnimate',
-		//'ngTouch',
 		'ngSanitize',
 		'ui.router',
 		'ui.bootstrap',
-		//'ui.utils',
 		'angular-confirm',
 		'infinite-scroll',
 		'ui.gravatar'];
