@@ -5,14 +5,14 @@
 		<a ui-sref="dashboard.new-subscription"
 		   ui-route="/dashboard/subscription/new"
 		   class="item "
-		   ng-class="{active: $uiRoute}">
+		   ng-class="{active: isActive('/dashboard/subscription/new')}">
 			+ New Subscription
 		</a>
 
 		<a ui-sref="dashboard"
 		   ui-route="/dashboard"
 		   class="item"
-		   ng-class="{active: $uiRoute}">
+		   ng-class="{active: isActive('/dashboard')}">
 			All Jobs
 		</a>
 

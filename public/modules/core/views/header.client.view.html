@@ -24,11 +24,11 @@
 			<!--</li>-->
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
-			<li ui-route="/signup" ng-class="{active: $uiRoute}">
+			<li ui-route="/signup" ng-class="{active: isMenuActive('/signup')}">
 				<a href="/signup">Sign Up</a>
 			</li>
 			<li class="divider-vertical"></li>
-			<li ui-route="/signin" ng-class="{active: $uiRoute}">
+			<li ui-route="/signin" ng-class="{active: isMenuActive('/signin')}">
 				<a href="/signin">Sign In</a>
 			</li>
 		</ul>
