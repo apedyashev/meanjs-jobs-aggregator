@@ -273,6 +273,9 @@ body {
   background-color: #eeeeee;
   padding-bottom: 20px;
 }
+h4 span {
+  color: #7c7c93;
+}
 .navbar.navbar-fixed-top {
   background-color: #fff;
 }

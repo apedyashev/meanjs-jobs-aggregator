@@ -9,8 +9,10 @@ angular.module('stats').controller('StatsController', ['$scope', 'Job',
 		}).$promise.then(function(stats) {
 			$scope.stats = stats;
 			$scope.maxCityCount = 0;
+			$scope.totalJobs = 0;
 			angular.forEach(stats.cities, function(city) {
 				$scope.maxCityCount = (city.count > $scope.maxCityCount) ? city.count : $scope.maxCityCount;
+				$scope.totalJobs += city.count;
 			});
 
 			$scope.maxAvailCount = 0;
