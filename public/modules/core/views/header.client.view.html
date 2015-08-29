@@ -36,7 +36,7 @@
 			<li ui-route="/dashboard" ng-class="{active: isMenuActive('/dashboard')}">
 				<a href="/dashboard">Dashboard</a>
 			</li>
-			<li ui-route="/statistics" ng-class="{active: $uiRoute}">
+			<li ui-route="/statistics" ng-class="{active: isMenuActive('/statistics')}">
 				<a href="/statistics">Statistics</a>
 			</li>
 			<li class="dropdown user-menu" ng-class="{active: isMenuActive('/settings')}" dropdown>
@@ -65,4 +65,5 @@
 			</li>
 		</ul>
 	</nav>
+	<butter-bar></butter-bar>
 </div>

@@ -3,14 +3,17 @@
 module.exports = function(grunt) {
 	// Unified Watch Object
 	var watchFiles = {
-		serverViews: ['app/views/**/*.*'],
-		serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
-		clientViews: ['public/modules/**/views/**/*.html'],
-		clientJS: ['public/js/*.js', 'public/modules/**/*.js'],
-		clientCSS: ['public/modules/**/*.css'],
-		clientLess: ['public/less/*.less','public/modules/**/*.less'],
-		mochaTests: ['app/tests/**/*.js']
-	};
+			serverViews: ['app/views/**/*.*'],
+			serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
+			clientViews: ['public/modules/**/views/**/*.html'],
+			clientJS: ['public/js/*.js', 'public/modules/**/*.js'],
+			clientCSS: ['public/modules/**/*.css'],
+			clientLess: ['public/less/*.less','public/modules/**/*.less'],
+			mochaTests: ['app/tests/**/*.js']
+		},
+		lessPluginAutoprefix = new (require('less-plugin-autoprefix'))({
+			browsers : ['last 10 versions']
+		});
 
 	// Project Configuration
 	grunt.initConfig({
@@ -71,6 +74,9 @@ module.exports = function(grunt) {
 			}
 		},
 		less: {
+			options: {
+				plugins : [lessPluginAutoprefix]
+			},
 			development: {
 				options: {
 					sourceMap: true,

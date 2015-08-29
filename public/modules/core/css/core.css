@@ -30,7 +30,109 @@
   background-color: #437e6f;
 }
 .jobs-aggregator .progress {
-  border-radius: 0;
+  -webkit-border-radius: 0;
+          border-radius: 0;
+}
+
+.butterbar {
+  position: relative;
+  height: 3px;
+  margin-bottom: -3px;
+}
+.butterbar.active {
+  -webkit-animation: changebar 2.25s infinite .75s;
+          animation: changebar 2.25s infinite .75s;
+}
+.butterbar.active .bar {
+  -webkit-animation: changebar 2.25s infinite;
+          animation: changebar 2.25s infinite;
+}
+.butterbar.active .bar:before {
+  -webkit-animation: movingbar 0.75s infinite;
+          animation: movingbar 0.75s infinite;
+}
+.butterbar .bar {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  text-indent: -9999px;
+  background-color: #23b7e5;
+}
+.butterbar .bar:before {
+  position: absolute;
+  right: 50%;
+  left: 50%;
+  height: 3px;
+  background-color: inherit;
+  content: "";
+}
+@-webkit-keyframes movingbar {
+  0% {
+    right: 50%;
+    left: 50%;
+  }
+  99.9% {
+    right: 0;
+    left: 0;
+  }
+  100% {
+    right: 50%;
+    left: 50%;
+  }
+}
+@keyframes movingbar {
+  0% {
+    right: 50%;
+    left: 50%;
+  }
+  99.9% {
+    right: 0;
+    left: 0;
+  }
+  100% {
+    right: 50%;
+    left: 50%;
+  }
+}
+@-webkit-keyframes changebar {
+  0% {
+    background-color: #437e6f;
+  }
+  33.3% {
+    background-color: #3d7e4c;
+  }
+  33.33% {
+    background-color: #5bc0de;
+  }
+  66.6% {
+    background-color: #4280de;
+  }
+  66.66% {
+    background-color: #5cb85c;
+  }
+  99.9% {
+    background-color: #4db83f;
+  }
+}
+@keyframes changebar {
+  0% {
+    background-color: #437e6f;
+  }
+  33.3% {
+    background-color: #3d7e4c;
+  }
+  33.33% {
+    background-color: #5bc0de;
+  }
+  66.6% {
+    background-color: #4280de;
+  }
+  66.66% {
+    background-color: #5cb85c;
+  }
+  99.9% {
+    background-color: #4db83f;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -64,7 +166,108 @@
   background-color: #437e6f;
 }
 .jobs-aggregator .progress {
-  border-radius: 0;
+  -webkit-border-radius: 0;
+          border-radius: 0;
+}
+.butterbar {
+  position: relative;
+  height: 3px;
+  margin-bottom: -3px;
+}
+.butterbar.active {
+  -webkit-animation: changebar 2.25s infinite .75s;
+          animation: changebar 2.25s infinite .75s;
+}
+.butterbar.active .bar {
+  -webkit-animation: changebar 2.25s infinite;
+          animation: changebar 2.25s infinite;
+}
+.butterbar.active .bar:before {
+  -webkit-animation: movingbar 0.75s infinite;
+          animation: movingbar 0.75s infinite;
+}
+.butterbar .bar {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  text-indent: -9999px;
+  background-color: #23b7e5;
+}
+.butterbar .bar:before {
+  position: absolute;
+  right: 50%;
+  left: 50%;
+  height: 3px;
+  background-color: inherit;
+  content: "";
+}
+@-webkit-keyframes movingbar {
+  0% {
+    right: 50%;
+    left: 50%;
+  }
+  99.9% {
+    right: 0;
+    left: 0;
+  }
+  100% {
+    right: 50%;
+    left: 50%;
+  }
+}
+@keyframes movingbar {
+  0% {
+    right: 50%;
+    left: 50%;
+  }
+  99.9% {
+    right: 0;
+    left: 0;
+  }
+  100% {
+    right: 50%;
+    left: 50%;
+  }
+}
+@-webkit-keyframes changebar {
+  0% {
+    background-color: #437e6f;
+  }
+  33.3% {
+    background-color: #3d7e4c;
+  }
+  33.33% {
+    background-color: #5bc0de;
+  }
+  66.6% {
+    background-color: #4280de;
+  }
+  66.66% {
+    background-color: #5cb85c;
+  }
+  99.9% {
+    background-color: #4db83f;
+  }
+}
+@keyframes changebar {
+  0% {
+    background-color: #437e6f;
+  }
+  33.3% {
+    background-color: #3d7e4c;
+  }
+  33.33% {
+    background-color: #5bc0de;
+  }
+  66.6% {
+    background-color: #4280de;
+  }
+  66.66% {
+    background-color: #5cb85c;
+  }
+  99.9% {
+    background-color: #4db83f;
+  }
 }
 body {
   background-color: #eeeeee;
@@ -113,7 +316,8 @@ body {
   background: none;
 }
 .navbar.navbar-fixed-top .nav .user-menu img {
-  border-radius: 50%;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
   background-size: contain;
   width: 34px;
   height: 34px;
