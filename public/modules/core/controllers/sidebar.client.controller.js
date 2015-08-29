@@ -2,9 +2,6 @@
 
 angular.module('core').controller('SidebarController', ['$scope', '$location',
 	function($scope, $location) {
-		// Sidebar controller logic
-		// ...
-
 		// (For mobile devices ONLY)
 		$scope.toggleMenu = function() {
 			$scope.isMenuVisible = !$scope.isMenuVisible;
@@ -15,9 +12,7 @@ angular.module('core').controller('SidebarController', ['$scope', '$location',
 			$scope.isMenuVisible = false;
 		});
 
-		// TODO: temporary solution. Must be isItemActive
-		// see http://stackoverflow.com/questions/32286671/why-directives-method-is-available-from-parent-scope
-		$scope.isActive = function (section) {
+		$scope.isItemActive = function (section) {
 			return ($location.path() === section);
 		};
 	}

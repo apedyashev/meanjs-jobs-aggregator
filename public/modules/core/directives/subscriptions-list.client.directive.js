@@ -5,6 +5,9 @@ angular.module('core').directive('subscriptionsList', ['Subscription', '$state',
 		return {
 			templateUrl: '/modules/core/views/subscriptions-list.client.view.html',
 			restrict: 'E',
+			// http://stackoverflow.com/questions/32286671/why-directives-method-is-available-from-parent-scope
+			// https://github.com/angular/angular.js/wiki/Understanding-Scopes
+			scope: true,
 			link: function postLink(scope, element, attrs) {
 				Subscription.clear();
 				scope.loadInProgress = true;
