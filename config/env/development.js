@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
+	//db: 'mongodb://localhost:27018/jobs-aggregator-dev',
 	db: 'mongodb://localhost/jobs-aggregator-dev',
 	app: {
 		title: 'jobs-aggregator - Development Environment'
