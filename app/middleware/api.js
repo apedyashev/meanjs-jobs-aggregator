@@ -1,10 +1,10 @@
-var cors = require('cors');
+'use strict';
 
 module.exports = function apiHeaders(req, res, next) {
-    var corsOptions = {
-        methods: ['GET', 'PUT', 'POST', 'DELETE'],
-        allowedHeaders: 'X-Requested-With,Content-Type',
-        credentials: true
-    };
-    cors(corsOptions)(req, res, next);
+    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,*');
+
+    next();
 };
