@@ -218,4 +218,20 @@ module.exports = function(grunt) {
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+
+	grunt.registerTask('test:backend', function () {
+		var tasks = ['mochaTest'];
+
+		// Use the force option for all tasks declared in the previous line
+		grunt.option('force', false);
+		grunt.task.run(tasks);
+	});
+
+	grunt.registerTask('test:frontend', function () {
+		var tasks = ['karma:unit'];
+
+		// Use the force option for all tasks declared in the previous line
+		grunt.option('force', false);
+		grunt.task.run(tasks);
+	});
 };
