@@ -7,7 +7,7 @@
 		var AuthenticationController,
 			scope,
 			$httpBackend,
-			$stateParams,
+			Notification,
 			$location;
 
 		beforeEach(function() {
@@ -30,12 +30,12 @@
 		// The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
 		// This allows us to inject a service but then attach it to a variable
 		// with the same name as the service.
-		beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_) {
+		beforeEach(inject(function($controller, $rootScope, _$location_, _Notification_, _$httpBackend_) {
 			// Set a new global scope
 			scope = $rootScope.$new();
 
 			// Point global variables to injected services
-			$stateParams = _$stateParams_;
+			Notification = _Notification_;
 			$httpBackend = _$httpBackend_;
 			$location = _$location_;
 
@@ -45,74 +45,86 @@
 			});
 		}));
 
-
-		it('$scope.signin() should login with a correct user and password', function() {
-			// Test expected GET request
-			$httpBackend.when('POST', '/api/auth/signin').respond(200, 'Fred');
-
-			scope.signin();
-			$httpBackend.flush();
-
-			// Test scope value
-			expect(scope.authentication.user).toEqual('Fred');
-			expect($location.url()).toEqual('/');
+		it('should expose the authentication service', function() {
+			expect(scope.authentication).toBeTruthy();
 		});
 
-		it('$scope.signin() should fail to log in with nothing', function() {
-			// Test expected POST request
-			$httpBackend.expectPOST('/api/auth/signin').respond(400, {
-				'message': 'Missing credentials'
+		it('should redirect to the dashboard if user logged in', inject(function($controller) {
+			scope.authentication.user = {
+				name: 'user #1'
+			};
+			AuthenticationController = $controller('AuthenticationController', {
+				$scope: scope
 			});
 
-			scope.signin();
-			$httpBackend.flush();
+			expect($location.path()).toEqual('/dashboard');
+		}));
 
-			// Test scope value
-			expect(scope.error).toEqual('Missing credentials');
-		});
+		describe('$scope.signup()', function() {
+			it('should login user if it sugned up successfully', function() {
+				// Test expected GET request
+				$httpBackend.when('POST', '/api/auth/signup').respond(200, 'Fred');
 
-		it('$scope.signin() should fail to log in with wrong credentials', function() {
-			// Foo/Bar combo assumed to not exist
-			scope.authentication.user = 'Foo';
-			scope.credentials = 'Bar';
+				scope.signup();
+				$httpBackend.flush();
 
-			// Test expected POST request
-			$httpBackend.expectPOST('/api/auth/signin').respond(400, {
-				'message': 'Unknown user'
+				// Test scope value
+				expect(scope.authentication.user).toEqual('Fred');
+				expect($location.url()).toEqual('/');
 			});
 
-			scope.signin();
-			$httpBackend.flush();
+			it('should call Notification.showError in case of error', function() {
+				var errorMessage = 'Signup error',
+					responseMock = {
+						message: errorMessage
+					};
+				Notification.showError = jasmine.createSpy('error');
 
-			// Test scope value
-			expect(scope.error).toEqual('Unknown user');
+				// Test expected GET request
+				$httpBackend.when('POST', '/api/auth/signup').respond(404, responseMock);
+
+				scope.signup();
+				$httpBackend.flush();
+
+				// Test scope value
+				expect(scope.authentication.user).toBeUndefined();
+				expect(Notification.showError).toHaveBeenCalled();
+				expect(Notification.showError.calls.mostRecent().args[0]).toEqual(errorMessage);
+			});
 		});
 
-		it('$scope.signup() should register with correct data', function() {
-			// Test expected GET request
-			scope.authentication.user = 'Fred';
-			$httpBackend.when('POST', '/api/auth/signup').respond(200, 'Fred');
 
-			scope.signup();
-			$httpBackend.flush();
+		describe('$scope.signin()', function() {
+			it('$scope.authentication.user to value returned by API', function() {
+				// Test expected GET request
+				$httpBackend.when('POST', '/api/auth/signin').respond(200, 'Fred');
 
-			// test scope value
-			expect(scope.authentication.user).toBe('Fred');
-			expect(scope.error).toEqual(undefined);
-			expect($location.url()).toBe('/');
-		});
+				scope.signin();
+				$httpBackend.flush();
 
-		it('$scope.signup() should fail to register with duplicate Username', function() {
-			// Test expected POST request
-			$httpBackend.when('POST', '/api/auth/signup').respond(400, {
-				'message': 'Username already exists'
+				// Test scope value
+				expect(scope.authentication.user).toEqual('Fred');
+				expect($location.url()).toEqual('/dashboard');
 			});
 
-			scope.signup();
-			$httpBackend.flush();
+			it('should call Notification.showError in case of error', function() {
+				var errorMessage = 'Signin error',
+					responseMock = {
+						message: errorMessage
+					};
+				Notification.showError = jasmine.createSpy('error');
 
-			// Test scope value
-			expect(scope.error).toBe('Username already exists');
+				// Test expected GET request
+				$httpBackend.when('POST', '/api/auth/signin').respond(404, responseMock);
+
+				scope.signin();
+				$httpBackend.flush();
+
+				// Test scope value
+				expect(scope.authentication.user).toBeUndefined();
+				expect(Notification.showError).toHaveBeenCalled();
+				expect(Notification.showError.calls.mostRecent().args[0]).toEqual(errorMessage);
+			});
 		});
 	});
 }());
