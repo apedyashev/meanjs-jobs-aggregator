@@ -1,7 +1,4 @@
-[![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
-
-[![Build Status](https://travis-ci.org/meanjs/mean.svg?branch=master)](https://travis-ci.org/meanjs/mean)
-[![Dependencies Status](https://david-dm.org/meanjs/mean.svg)](https://david-dm.org/meanjs/mean)
+[![Build Status](https://codeship.com/projects/8f5d90b0-83f7-0133-c789-0221f9c8cecf/status?branch=master)](CodeShip)
 
 This project was developed as part of my learning of AngularJS. The project is a service that allows to search jobs scrapped from jobscout24.ch using import.io
 
