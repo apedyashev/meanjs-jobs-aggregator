@@ -2,6 +2,7 @@
 
 angular.module('core').controller('SidebarController', ['$scope', '$location',
 	function($scope, $location, $route) {
+		$scope.isMenuVisible = false;
 		// (For mobile devices ONLY)
 		$scope.toggleMenu = function() {
 			$scope.isMenuVisible = !$scope.isMenuVisible;

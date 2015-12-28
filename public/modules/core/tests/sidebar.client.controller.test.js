@@ -2,12 +2,10 @@
 
 (function() {
 	// Sidebar Controller Spec
-	describe('Sidebar Controller Tests', function() {
+	describe('Sidebar Controller', function() {
 		// Initialize global variables
 		var SidebarController,
 			scope,
-			$httpBackend,
-			$stateParams,
 			$location;
 
 		// The $resource service augments the response object with methods for updating and deleting the resource.
@@ -35,13 +33,11 @@
 		// The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
 		// This allows us to inject a service but then attach it to a variable
 		// with the same name as the service.
-		beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_) {
+		beforeEach(inject(function($controller, $rootScope, _$location_) {
 			// Set a new global scope
 			scope = $rootScope.$new();
 
 			// Point global variables to injected services
-			$stateParams = _$stateParams_;
-			$httpBackend = _$httpBackend_;
 			$location = _$location_;
 
 			// Initialize the Sidebar controller.
@@ -50,9 +46,32 @@
 			});
 		}));
 
-		it('Should do some controller test', inject(function() {
-			// The test logic
-			// ...
-		}));
+		it('should initialize isMenuVisible to false', function() {
+			expect(scope.isMenuVisible).toBeFalsy();
+		});
+
+		it('inversts the value of isMenuVisible after each toggleMenu() function call', function() {
+			expect(scope.isMenuVisible).toBeFalsy();
+			scope.toggleMenu();
+			expect(scope.isMenuVisible).toBeTruthy();
+			scope.toggleMenu();
+			expect(scope.isMenuVisible).toBeFalsy();
+		});
+
+		describe('provides the isItemActive() function', function() {
+			it('that returns true if passed argument is equal to $location.path()', function() {
+				var itemPath = '/some/path/to/resource';
+				$location.path(itemPath);
+
+				expect(scope.isItemActive(itemPath)).toBeTruthy();
+			});
+
+			it('that returns false if passed argument is  NOT equal to $location.path()', function() {
+				var itemPath = '/some/path/to/resource';
+				$location.path(itemPath);
+
+				expect(scope.isItemActive(itemPath + '/123456')).toBeFalsy();
+			});
+		});
 	});
 }());
