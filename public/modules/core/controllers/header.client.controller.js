@@ -32,8 +32,12 @@ angular.module('core').controller('HeaderController', ['$scope', '$location', '$
 				})
 				.error(function(response) {
 					$scope.isSigningOut = false;
-					var message = (response.data && response.data.message) ? response.data.message : response.message;
-					Notification.showError(message || 'Unknown error');
+					var message = 'Unknown error';
+					if (response) {
+						message = (response.data && response.data.message) ? response.data.message : response.message;
+					}
+
+					Notification.showError(message);
 				});
 		};
 
