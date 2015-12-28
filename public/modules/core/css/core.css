@@ -285,6 +285,9 @@ h4 span {
   text-transform: uppercase;
   cursor: pointer;
 }
+.navbar.navbar-fixed-top .nav {
+  min-height: 56px;
+}
 .navbar.navbar-fixed-top .nav > li > a {
   color: #888;
   text-shadow: 0 0 0;
