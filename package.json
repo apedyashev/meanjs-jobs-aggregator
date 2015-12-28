@@ -45,9 +45,7 @@
     "passport-twitter": "~1.0.2",
     "request": "^2.57.0",
     "sprintf": "^0.1.5",
-    "swig": "~1.4.1"
-  },
-  "devDependencies": {
+    "swig": "~1.4.1",
     "grunt-concurrent": "~1.0.0",
     "grunt-contrib-copy": "^0.8.0",
     "grunt-contrib-csslint": "^0.3.1",
@@ -55,7 +53,9 @@
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-uglify": "~0.6.0",
     "grunt-contrib-watch": "~0.6.1",
-    "grunt-env": "~0.4.1",
+    "grunt-env": "~0.4.1"
+  },
+  "devDependencies": {
     "grunt-karma": "~0.12.1",
     "grunt-mocha-test": "~0.12.1",
     "grunt-ng-annotate": "~0.4.0",
