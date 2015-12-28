@@ -278,6 +278,7 @@ h4 span {
 }
 .navbar.navbar-fixed-top {
   background-color: #fff;
+  min-height: 59px;
 }
 .navbar.navbar-fixed-top a {
   color: #437e6f;
