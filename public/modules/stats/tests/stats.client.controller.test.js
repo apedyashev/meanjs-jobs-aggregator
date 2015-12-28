@@ -2,7 +2,7 @@
 
 (function() {
 	// Stats Controller Spec
-	describe('Stats Controller Tests', function() {
+	describe('Stats Controller', function() {
 		// Initialize global variables
 		var StatsController,
 			scope,
@@ -50,9 +50,62 @@
 			});
 		}));
 
-		it('Should do some controller test', inject(function() {
-			// The test logic
-			// ...
+		it('should fetch stats using GET method', inject(function() {
+			var statsMock = {
+				cities: [],
+				availabilities: []
+			};
+			$httpBackend.expectGET(/^\/api\/jobs\/stats/).respond(200, statsMock);
+			$httpBackend.flush();
+
+			expect(scope.stats).toEqualData(statsMock);
+			expect(scope.maxCityCount).toBe(0);
+			expect(scope.totalJobs).toBe(0);
+			expect(scope.maxAvailCount).toBe(0);
+		}));
+
+		it('should set maxCityCount to the max value of cities[].count and totalJobs to summ of cities[].count', inject(function() {
+			var statsMock = {
+				cities: [{
+					name: 'city1',
+					count: 8
+				}, {
+					name: 'city2',
+					count: 10
+				}, {
+					name: 'city3',
+					count: 9
+				}],
+				availabilities: []
+			};
+			$httpBackend.expectGET(/^\/api\/jobs\/stats/).respond(200, statsMock);
+			$httpBackend.flush();
+
+			expect(scope.maxCityCount).toBe(10);
+			expect(scope.totalJobs).toBe(27);
+			expect(scope.maxAvailCount).toBe(0);
+		}));
+
+		it('should set maxAvailCount to the max value of availabilities[].count', inject(function() {
+			var statsMock = {
+				cities: [],
+				availabilities: [{
+					name: 'a-10%',
+					count: 5
+				}, {
+					name: 'a-5%',
+					count: 6
+				}, {
+					name: 'a-1%',
+					count: 4
+				}]
+			};
+			$httpBackend.expectGET(/^\/api\/jobs\/stats/).respond(200, statsMock);
+			$httpBackend.flush();
+
+			expect(scope.maxCityCount).toBe(0);
+			expect(scope.totalJobs).toBe(0);
+			expect(scope.maxAvailCount).toBe(6);
 		}));
 	});
 }());

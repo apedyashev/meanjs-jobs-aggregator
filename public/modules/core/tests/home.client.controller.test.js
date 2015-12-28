@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-	fdescribe('HomeController', function() {
+	describe('HomeController', function() {
 		//Initialize global variables
 		var scope,
 			HomeController;
