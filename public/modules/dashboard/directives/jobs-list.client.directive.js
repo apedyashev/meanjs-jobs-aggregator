@@ -44,6 +44,7 @@ angular.module('dashboard').directive('jobsList', ['$stateParams', 'Job',
 					};
 
 					scope.loadInProgress = true;
+					// TODO: WTF???
 					if (scope.subscriptionId) {
 						Job.loadNextPage($stateParams.subscriptionId, onPageLoaded);
 					}
