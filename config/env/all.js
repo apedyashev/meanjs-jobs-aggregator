@@ -83,6 +83,7 @@ module.exports = {
 				'public/modules/admin/*/*[!tests]*/*.js',
 				'public/modules/core/services/notification.client.service.js',
 				'public/modules/users/users.client.module.js',
+				'public/modules/users/services/authentication.client.service.js',
 				'public/modules/users/services/users.client.service.js'
 			],
 			tests: [
