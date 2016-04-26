@@ -9,12 +9,12 @@ angular.module('adminusers').directive('usersList', ['$stateParams', 'Users',
 			//	subscriptionId: '='
 			//},
 			link: function postLink(scope, element, attrs) {
-				// Clears internal jobs array when page before page show
+				// Clears internal users array when page before page show
 				User.clearItems();
 
 
 				/**
-				 * Loads the next page with jobs
+				 * Loads the next page with users
 				 */
 				var retriesCount = 0;
 				scope.loadInProgress = false;
