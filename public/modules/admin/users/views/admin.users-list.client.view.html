@@ -1,0 +1,18 @@
+<div class="list-group"
+	 data-ng-init="init()"
+	 infinite-scroll="loadMoreItems()"
+	 infinite-scroll-disabled="loadInProgress || loadingError || retriesCountExceeded"
+	 infinite-scroll-distance="0">
+
+	<user-item></user-item>
+
+	<h4 data-ng-show="retriesCountExceeded && !users.length" class="well text-center text-danger no-jobs">
+		No Users Found
+	</h4>
+
+	<div class="text-center error" data-ng-show="loadingError && !users.length">
+		<i class="fa fa-times-circle"></i> Failed to load users
+	</div>
+
+	<loader></loader>
+</div>
