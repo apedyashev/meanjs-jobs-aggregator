@@ -143,4 +143,12 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 	});
 };
 
+UserSchema.set('toJSON', {
+	transform: function(doc, ret, options) {
+		delete ret.password;
+		delete ret.salt;
+		return ret;
+	}
+});
+
 mongoose.model('User', UserSchema);
