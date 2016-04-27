@@ -7,6 +7,7 @@ angular.module('core').directive('subscriptionsList', ['Subscription', '$state',
 			restrict: 'E',
 			// http://stackoverflow.com/questions/32286671/why-directives-method-is-available-from-parent-scope
 			// https://github.com/angular/angular.js/wiki/Understanding-Scopes
+			// create a child scope, otherwise controller's scope will be used
 			scope: true,
 			link: function postLink(scope, element, attrs) {
 				Subscription.clear();
