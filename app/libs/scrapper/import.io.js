@@ -9,7 +9,7 @@ var sprintf = require('sprintf'),
     config = require('../../../config/config');
 
 module.exports = function() {
-    var apiBaseUrl = 'https://api.import.io/store/data';
+    var apiBaseUrl = 'https://api.import.io/store/connector';
 
     /**
      * Performs import of the data from importedUrl using import.io's API and extractorId
@@ -24,7 +24,7 @@ module.exports = function() {
             options = {
                 url: url
             };
-
+#console.log('url', url);
         request(options, function(err, response, body) {
             if (err) {
                 onDone(err);
