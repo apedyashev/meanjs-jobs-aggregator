@@ -35,17 +35,17 @@ exports = module.exports = app;
 // Logging initialization
 console.log('MEAN.JS application started on port ' + config.port);
 
-setInterval(function () {
-	var scrapper = require('./app/libs/scrapper')();
-	console.error(chalk.green('Scrapping started'));
-	scrapper.run(function(err, jobs) {
-		if (err) {
-			console.error(chalk.red('Error while scrapping'), err);
-		} else {
-			console.error(chalk.green('Scrapping done'));
-		}
-	});
-}, config.scrapper.importInterval);
+// setInterval(function () {
+// 	var scrapper = require('./app/libs/scrapper')();
+// 	console.error(chalk.green('Scrapping started'));
+// 	scrapper.run(function(err, jobs) {
+// 		if (err) {
+// 			console.error(chalk.red('Error while scrapping'), err);
+// 		} else {
+// 			console.error(chalk.green('Scrapping done'));
+// 		}
+// 	});
+// }, config.scrapper.importInterval);
 
 /**
  * Remove jobs older than 1 month

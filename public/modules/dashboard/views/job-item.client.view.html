@@ -6,18 +6,18 @@
 		{{job.title}} <small> <span data-ng-show="job.city">in</span> <b>{{job.city}}</b></small>
 		<span class="label label-success pull-right"
 			  tooltip-placement="bottom"
-			  tooltip="Occupancy is {{job.availability}}">
-			{{job.availability}}
+			  tooltip="Level Of Employment is {{job.levelOfEmployment}}">
+			{{job.levelOfEmployment}}
 		</span>
 	</h4>
 	<div class="text-muted">
-		<span tooltip-placement="bottom" tooltip="Posted on {{job.date | date : 'd.M.yyyy'}}">
-			{{job.date | date : 'd.M.yyyy'}}
+		<span tooltip-placement="bottom" tooltip="Posted on {{job.datePosted | date : 'd.M.yyyy'}}">
+			{{job.datePosted | date : 'd.M.yyyy'}}
 		</span>
 		|
 		<span tooltip-placement="bottom" tooltip="Posted by {{job.company}}">
 			{{job.company}}
 		</span>
 	</div>
-	<p class="description">{{job.short_description}}</p>
+	<p class="description">{{job.shortDescription}}</p>
 </a>

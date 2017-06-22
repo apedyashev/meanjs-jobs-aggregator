@@ -16,12 +16,12 @@
 		<div data-ng-show="stats.availabilities">
 			<hr>
 			<h4>Occupancies statistics</h4>
-			<progressbar data-ng-repeat="availability in stats.availabilities | orderBy:'count':'reverse'"
-						 value="(availability.count * 100) / maxAvailCount"
+			<progressbar data-ng-repeat="levelOfEmployment in stats.availabilities | orderBy:'count':'reverse'"
+						 value="(levelOfEmployment.count * 100) / maxAvailCount"
 						type="info"
 						 tooltip-placement="bottom"
-						 tooltip="{{availability.count}} job offers with '{{availability.name}}' occupancy">
-				{{availability.name}} ({{availability.count}})
+						 tooltip="{{levelOfEmployment.count}} job offers with '{{levelOfEmployment.name}}' level of employment">
+				{{levelOfEmployment.name}} ({{levelOfEmployment.count}})
 			</progressbar>
 		</div>
 	</section>

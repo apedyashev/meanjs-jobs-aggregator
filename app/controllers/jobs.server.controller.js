@@ -24,7 +24,7 @@ exports.list = function(req, res) {
 		if (subscription) {
 			subscription.keywords.forEach(function(keyword) {
 				$or.push({
-					short_description: new RegExp(keyword, 'ig')
+					shortDescription: new RegExp(keyword, 'ig')
 				});
 				$or.push({
 					title: new RegExp(keyword, 'ig')
@@ -80,7 +80,7 @@ exports.stats = function (req, res) {
 			},
 			{
 				queryName: 'availabilities',
-				dbName: 'availability'
+				dbName: 'levelOfEmployment'
 			}
 		],
 		allowedQueryNames = {

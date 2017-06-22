@@ -13,10 +13,10 @@ var JobSchema = new Schema({
 	title: {
 		type: String
 	},
-	short_description: {
+	shortDescription: {
 		type: String
 	},
-	availability: {
+	levelOfEmployment: {
 		type: String
 	},
 	city: {
@@ -25,7 +25,7 @@ var JobSchema = new Schema({
 	company: {
 		type: String
 	},
-	date: {
+	datePosted: {
 		type: Date
 	},
 	link: {

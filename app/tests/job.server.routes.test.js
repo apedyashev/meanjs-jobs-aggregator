@@ -42,29 +42,29 @@ describe('Job CRUD tests', function() {
 		user.save(function() {
 			jobs = [{
 					title: 'Job 1',
-					short_description: 'short description',
-					availability: '100%',
+					shortDescription: 'short description',
+					levelOfEmployment: '100%',
 					city: 'Jericho',
 					company: 'company xxx',
-					date: Date.now(),
+					datePosted: Date.now(),
 					link: 'http://ya.ru'
 				},
 				{
 					title: 'Job 2',
-					short_description: 'short description with node keyword',
-					availability: '80%',
+					shortDescription: 'short description with node keyword',
+					levelOfEmployment: '80%',
 					city: 'Belgrade',
 					company: 'company xxx2',
-					date: Date.now(),
+					datePosted: Date.now(),
 					link: 'http://ya1.ru'
 				},
 				{
 					title: 'Job 3',
-					short_description: 'short description with test keyword',
-					availability: '100%',
+					shortDescription: 'short description with test keyword',
+					levelOfEmployment: '100%',
 					city: 'Moscow',
 					company: 'company xxx3',
-					date: Date.now(),
+					datePosted: Date.now(),
 					link: 'http://ya2.ru'
 				}
 			];
