@@ -66,7 +66,6 @@ angular.module('core').factory('Notification', [ '$q',
 			interceptor: {
 				responseError: function (response) {
 					var message = (response.data && response.data.message) ? response.data.message : response.message;
-					console.log(response);
 					showError(message || (response.status + ' ' + response.statusText));
 
 					var deferred = $q.defer();
