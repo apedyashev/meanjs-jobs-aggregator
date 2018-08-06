@@ -1,10 +1,11 @@
-FROM node:0.10
+FROM node:9
 
-MAINTAINER Matthias Luebken, matthias@catalyst-zero.com
+#MAINTAINER Matthias Luebken, matthias@catalyst-zero.com
 
 # Install gem sass for  grunt-contrib-sass
 RUN apt-get update -qq && apt-get install -y build-essential
 RUN apt-get install -y ruby
+RUN apt-get install -y ruby`ruby -e 'puts RUBY_VERSION[/\d+\.\d+/]'`-dev
 RUN gem install sass
 
 WORKDIR /home/mean
@@ -14,7 +15,8 @@ RUN npm install -g grunt-cli
 RUN npm install -g bower
 
 # Install Mean.JS packages
-ADD package.json /home/mean/package.json
+# ADD package.json /home/mean/package.json
+
 RUN npm install
 
 # Manually trigger bower. Why doesnt this work via npm install?
@@ -30,5 +32,5 @@ ENV NODE_ENV development
 
 # Port 3000 for server
 # Port 35729 for livereload
-EXPOSE 3000 35729
+EXPOSE 3005 35729
 CMD ["grunt"]

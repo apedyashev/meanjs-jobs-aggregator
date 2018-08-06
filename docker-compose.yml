@@ -3,10 +3,14 @@ web:
   links:
    - db
   ports:
-   - "3000:3000"
+   - "3005:3005"
+  volumes:
+   - ./:/home/mean
   environment:
    NODE_ENV: development
 db:
   image: mongo
+  volumes:
+   - ./runtime/mongo:/data/db
   ports:
    - "27018:27017"

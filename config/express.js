@@ -11,6 +11,7 @@ var fs = require('fs'),
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
 	compress = require('compression'),
+	mongoose = require('mongoose'),
 	methodOverride = require('method-override'),
 	cookieParser = require('cookie-parser'),
 	helmet = require('helmet'),
@@ -85,13 +86,15 @@ module.exports = function(db) {
 	// CookieParser should be above session
 	app.use(cookieParser());
 
+
 	// Express MongoDB session storage
 	app.use(session({
 		saveUninitialized: true,
 		resave: true,
 		secret: config.sessionSecret,
 		store: new mongoStore({
-			db: db.connection.db,
+			mongooseConnection: mongoose.connection,
+			// db: db,//.connection.db,
 			collection: config.sessionCollection
 		})
 	}));

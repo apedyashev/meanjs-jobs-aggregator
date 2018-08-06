@@ -12,7 +12,7 @@
 	</h4>
 	<div class="text-muted">
 		<span tooltip-placement="bottom" tooltip="Posted on {{job.datePosted | date : 'd.M.yyyy'}}">
-			{{job.datePosted | date : 'd.M.yyyy'}}
+			{{job.datePosted && (job.datePosted | date : 'd.M.yyyy') || 'No Date'}}
 		</span>
 		|
 		<span tooltip-placement="bottom" tooltip="Posted by {{job.company}}">

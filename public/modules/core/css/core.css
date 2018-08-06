@@ -11,27 +11,26 @@
 .jobs-aggregator h5,
 .jobs-aggregator h6,
 .jobs-aggregator a {
-  color: #437e6f;
+  color: #437E6F;
 }
 .jobs-aggregator .btn {
   color: #fff;
 }
 .jobs-aggregator .btn.btn-success {
-  background-color: #437e6f;
-  border-color: #437e6f;
+  background-color: #437E6F;
+  border-color: #437E6F;
 }
 .jobs-aggregator .btn.btn-success:hover {
   background-color: #334440;
 }
 .jobs-aggregator .btn.btn-default {
-  color: #437e6f;
+  color: #437E6F;
 }
 .jobs-aggregator .label-success {
-  background-color: #437e6f;
+  background-color: #437E6F;
 }
 .jobs-aggregator .progress {
-  -webkit-border-radius: 0;
-          border-radius: 0;
+  border-radius: 0;
 }
 
 .butterbar {
@@ -96,19 +95,19 @@
 }
 @-webkit-keyframes changebar {
   0% {
-    background-color: #437e6f;
+    background-color: #437E6F;
   }
   33.3% {
     background-color: #3d7e4c;
   }
   33.33% {
-    background-color: #5bc0de;
+    background-color: #5BC0DE;
   }
   66.6% {
     background-color: #4280de;
   }
   66.66% {
-    background-color: #5cb85c;
+    background-color: #5CB85C;
   }
   99.9% {
     background-color: #4db83f;
@@ -116,19 +115,19 @@
 }
 @keyframes changebar {
   0% {
-    background-color: #437e6f;
+    background-color: #437E6F;
   }
   33.3% {
     background-color: #3d7e4c;
   }
   33.33% {
-    background-color: #5bc0de;
+    background-color: #5BC0DE;
   }
   66.6% {
     background-color: #4280de;
   }
   66.66% {
-    background-color: #5cb85c;
+    background-color: #5CB85C;
   }
   99.9% {
     background-color: #4db83f;
@@ -147,27 +146,26 @@
 .jobs-aggregator h5,
 .jobs-aggregator h6,
 .jobs-aggregator a {
-  color: #437e6f;
+  color: #437E6F;
 }
 .jobs-aggregator .btn {
   color: #fff;
 }
 .jobs-aggregator .btn.btn-success {
-  background-color: #437e6f;
-  border-color: #437e6f;
+  background-color: #437E6F;
+  border-color: #437E6F;
 }
 .jobs-aggregator .btn.btn-success:hover {
   background-color: #334440;
 }
 .jobs-aggregator .btn.btn-default {
-  color: #437e6f;
+  color: #437E6F;
 }
 .jobs-aggregator .label-success {
-  background-color: #437e6f;
+  background-color: #437E6F;
 }
 .jobs-aggregator .progress {
-  -webkit-border-radius: 0;
-          border-radius: 0;
+  border-radius: 0;
 }
 .butterbar {
   position: relative;
@@ -231,19 +229,19 @@
 }
 @-webkit-keyframes changebar {
   0% {
-    background-color: #437e6f;
+    background-color: #437E6F;
   }
   33.3% {
     background-color: #3d7e4c;
   }
   33.33% {
-    background-color: #5bc0de;
+    background-color: #5BC0DE;
   }
   66.6% {
     background-color: #4280de;
   }
   66.66% {
-    background-color: #5cb85c;
+    background-color: #5CB85C;
   }
   99.9% {
     background-color: #4db83f;
@@ -251,37 +249,37 @@
 }
 @keyframes changebar {
   0% {
-    background-color: #437e6f;
+    background-color: #437E6F;
   }
   33.3% {
     background-color: #3d7e4c;
   }
   33.33% {
-    background-color: #5bc0de;
+    background-color: #5BC0DE;
   }
   66.6% {
     background-color: #4280de;
   }
   66.66% {
-    background-color: #5cb85c;
+    background-color: #5CB85C;
   }
   99.9% {
     background-color: #4db83f;
   }
 }
 body {
-  background-color: #eeeeee;
+  background-color: #EEEEEE;
   padding-bottom: 20px;
 }
 h4 span {
-  color: #7c7c93;
+  color: #7C7C93;
 }
 .navbar.navbar-fixed-top {
   background-color: #fff;
   min-height: 59px;
 }
 .navbar.navbar-fixed-top a {
-  color: #437e6f;
+  color: #437E6F;
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -302,7 +300,7 @@ h4 span {
 }
 .navbar.navbar-fixed-top .nav > li.active > a,
 .navbar.navbar-fixed-top .nav > li > a:hover {
-  color: #437e6f;
+  color: #437E6F;
   border-top: 3px solid #437e6e;
   margin-top: 10px;
   padding-top: 2px;
@@ -323,8 +321,7 @@ h4 span {
   background: none;
 }
 .navbar.navbar-fixed-top .nav .user-menu img {
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
   background-size: contain;
   width: 34px;
   height: 34px;
@@ -374,7 +371,7 @@ h4 span {
 }
 .loading-items-container {
   margin-top: 5px;
-  color: #437e6f;
+  color: #437E6F;
 }
 .sidebar {
   padding-right: 0;
@@ -385,11 +382,11 @@ h4 span {
 .sidebar .item {
   padding: 5px;
   display: block;
-  color: #437e6f;
+  color: #437E6F;
 }
 .sidebar .item:hover {
-  background-color: #437e6f;
-  color: #ecf2f0;
+  background-color: #437E6F;
+  color: #ECF2F0;
   text-decoration: none;
   cursor: pointer;
 }
@@ -477,7 +474,7 @@ h4 span {
   display: block;
 }
 .dashboard .bootstrap-tagsinput .tag {
-  background-color: #437e6f;
+  background-color: #437E6F;
 }
 .dashboard .cities-container {
   max-height: 175px;
@@ -497,12 +494,12 @@ h4 span {
 .dashboard .jobs .error {
   font-size: 17px;
   margin-top: 30px;
-  color: #ad0a0a;
+  color: #AD0A0A;
   font-weight: bold;
 }
 .dashboard .jobs .no-jobs {
   margin-top: 30px;
-  color: #ad0a0a;
+  color: #AD0A0A;
 }
 
 .job-item .description {

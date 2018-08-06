@@ -17,6 +17,7 @@ var mongoose = require('mongoose'),
  * List of Jobs (all or for specific subscription, if subscriptionId is defined in query string)
  */
 exports.list = function(req, res) {
+	// return res.status(201).send('alles ist gut');
 	var findJobs = function(subscription) {
 		var query = {},
 			$or = [];
@@ -41,10 +42,11 @@ exports.list = function(req, res) {
 			}
 		}
 
-		var limit = req.query.limit || 20,
-			offset = req.query.offset || 0;
+		var limit = +req.query.limit || 20,
+			offset = +req.query.offset || 0;
 		Job.find(query).sort('-created').limit(limit).skip(offset).populate('user', 'displayName').exec(function(err, jobs) {
 			if (err) {
+				console.log('err', err);
 				return res.status(400).send({
 					message: errorHandler.getErrorMessage(err)
 				});

@@ -21,6 +21,7 @@ var getUniqueErrorMessage = function(err) {
  * Get the error message from error object
  */
 exports.getErrorMessage = function(err) {
+	console.log('err', err);
 	var message = '';
 
 	if (err.code) {
